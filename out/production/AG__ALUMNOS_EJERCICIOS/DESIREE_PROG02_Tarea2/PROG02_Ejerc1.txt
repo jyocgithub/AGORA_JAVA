@@ -1,0 +1,103 @@
+EJERCICIO 1.- Crea un proyecto en Netbeans denominado PROG02_Ejerc1 con una clase clase y método main y declara e inicializa una variable para almacenar cada uno de los siguientes valores. Trata de utilizar el tipo de datos de mas se ajuste a los datos. Justifica tu elección.
+
+          //Valor máximo no modificable: 5000.
+          final short MAXIMO = 4000;
+		  // es final pues no se puede modificar y es short pues basta con un ese tamaño
+          
+          //Si el nuevo empleado tiene carnet de conducir o no.
+          boolean carnet = true;
+		  // es boolean pues el valor puede ser solo true o false	
+          
+          //Un mes del año en formato numérido y como cadena.
+          byte mes = 1;
+          String mescadena = "Enero";
+		  // como numero es un byte pues solo tiene valores entre 1-12
+		  // como cadena debe ser un String
+          
+          //El nombre y apellidos de una persona.
+          String nombre = "Ana";
+          String apellidos = "Perez";
+          // como cadena debe ser un String
+          
+		  //Sexo: con dos valores posibles 'V' o 'M'.
+          char sexo = 'M';
+          // como son caracteres puede ser un char, aunque tambien podria ser un enumerado.
+
+          //Milisegundos transcurridos desde el 01/01/1970 hasta nuestros días.
+          long milis = 160980988;
+		  // un numero que excede al tamaño de int, debe ser long
+          
+          //Saldo de una cuenta bancaria.
+          int midineroporquesoymortal = 1000;
+		  // si no se tiene mas de 2 mil millones en la cuenta, basta con un int
+
+          //Distancia en kms desde la Tierra a Júpiter.
+          int distancia = 623000000;
+		  // la distancia, 63 millones, cabe en un int, pero no en un short
+
+          System.out.print("\n----- EJERCICIO DE VARIABLES Y TIPOS DE DATOS -----");
+          System.out.print("\n\tEl valor de la variable MAXIMO es " + MAXIMO);
+          System.out.print("\n\tEl valor de la variable carnet es " + carnet);
+          System.out.print("\n\tEl valor de la variable mes es " + mes);
+          System.out.print("\n\tEl valor de la variable mescadena es " + mescadena);
+          System.out.print("\n\tEl valor de la variable sexo es " + sexo);
+          System.out.print("\n\tEl valor de la variable milis es " + milis);
+          System.out.print("\n\tEl valor de la variable midineroporquesoymortal es " + midineroporquesoymortal);
+          System.out.print("\n\tEl valor de la variable distancia es " + distancia);
+
+EJERCICIO 2.- Indica si los siguientes identificadores de variables en Java serían válidos.  Justifica tu respuesta.
+
+            double
+                NO, es una palabra reservada por java  
+            /horaactual
+                No, comienza con / y eso no vale
+            $hora
+                SI; comienza por $ y eso vale 
+            MiHora
+                SI
+            _hora
+                SI, comienza con _ y eso si vale
+            5hora
+                NO, comienza por numero y no vale
+            char
+                SO, es palabra reservada
+
+EJERCICIO 3.-Teniendo en cuenta que var1, var2 y var3 son variables de tipo boolean y  están inicializadas a los siguientes valores: 
+           var1=true, 
+           var2=true y 
+           var3=false y que las variables X, Y y Z son variables enteras con valores: 
+           X=5, 
+           Y=-8 y 
+           Z=10, indica si las siguientes operaciones se evaluan a true o false.:
+
+           var1 || var2 && var3
+              T       T      F
+              T          F
+                    T
+          es TRUE
+
+          (var1 || var3) && (var2 && !var1).
+              T        F         T       F 
+                  T                   F
+                           F
+           es FALSE
+          
+          (var2 || !var1 || !var3) && var1
+               T       F         T        T
+                   T             T        T 
+                          T               T
+                                  T
+           es TRUE
+          
+          (X > 3 || Y > 3) && Z < -3.
+             5        8         10
+               T      T           F
+                   T              F
+                          F
+           es FALSE
+          
+          (X+Z == 15) && (Y != 2).
+             5 10           8
+                  T         T 
+                          T
+           es TRUE

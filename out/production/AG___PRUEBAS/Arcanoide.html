@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8"/>
+		<title>game</title>
+		<style>
+			/*definir el estilo de la pantalla*/
+			canvas {
+				backgroud: #eee;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="450" height="300"></canvas>
+		
+		<script>
+            //declarar variables
+            var canvas = document.getElementById("myCanvas");
+            var contexto = canvas.getContext("2d");
+            var x = canvas.width / 2;
+            var y = canvas.height - 30;
+            //var y = 10;
+            var direccionx = 1;
+            var direcciony = -1;
+            var radioPelota = 4;
+
+            //variable para crear una raqueta
+            var paddleHeight = 10;
+            var paddleWidth = 75;
+            var paddleX = (canvas.width - paddleWidth) / 2;
+
+            //variable para control de raqueta
+            var derechaPulsada = false;
+            var izquierdaPulsada = false;
+
+            //variables para los ladrillos
+            var filaLadrillos = 5;
+            var columnaLadrillos = 5;
+            var anchoLadrillo = 80;
+            var altoLadrillo = 20;
+            var separacionLadrillos = 1;
+            var margenLateralLadrillo = 30;
+            var margenSuperiorLadrillo = 30;
+
+
+            var estabaentredosy = false, estabaentredosx = false;
+
+            //guardare los ladrillos en un array bidimensional para filas y columnas
+            //para que desaparezcan cuando son golpeados se añade status con un valor si este cambia el ladrillo desaparece
+            var ladrillos = [];
+            for (i = 0; i < columnaLadrillos; i++) {
+                ladrillos[i] = [];
+                for (j = 0; j < filaLadrillos; j++) {
+                    ladrillos[i][j] = {x: 0, y: 0, status: 1};
+                }
+            }
+
+            //variable para registrar puntos
+            var puntuacion = 0;
+            var ladrillosRotos = 0;
+
+            //variables para vidas
+            var numeroVidas = 3;
+
+
+            //crear la funcion para las vidas
+
+            function crearVidas() {
+                contexto.font = "25px Arial";
+                contexto.fillStyle = "#000000";
+                contexto.fillText("VIDAS: " + numeroVidas, canvas.width - 120, 20);
+            }
+
+            //crear la funcion para el marcador de puntos
+            function marcador() {
+                contexto.font = "25px Arial";
+                contexto.fillStyle = "#000000";
+                contexto.fillText("PUNTUACION: " + puntuacion, 10, 20);
+            }
+
+            //crear las funciones para detectar que teclas se pulsan y cuando dejan de pulsarse
+            function teclaPulsada(e) {
+                if (e.keyCode == 39) {
+                    derechaPulsada = true;
+                }
+                else if (e.keyCode == 37) {
+                    izquierdaPulsada = true;
+                }
+            }
+
+            function teclaSinPulsar(e) {
+                if (e.keyCode == 39) {
+                    derechaPulsada = false;
+                }
+                else if (e.keyCode == 37) {
+                    izquierdaPulsada = false;
+                }
+            }
+
+            //crear las funciones de creacion y dibujo de la pelota
+            function crearPelota() {
+                contexto.beginPath();
+                contexto.arc(x, y, radioPelota, 0, Math.PI * 2);
+                contexto.fillStyle = "#0095DD";
+                contexto.fill();
+                contexto.closePath();
+            }
+
+            //fincion para crear la raqueta
+            function crearRaqueta() {
+                contexto.beginPath();
+                contexto.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
+                contexto.fillStyle = "#0095DD";
+                contexto.fill();
+                contexto.closePath();
+            }
+
+            //funcion para crear los ladrillos
+            function crearLadrillos() {
+
+                for (i = 0; i < columnaLadrillos; i++) {
+                    for (j = 0; j < filaLadrillos; j++) {
+
+                        if (ladrillos[i][j].status == 1) {
+                            var posicionX = (i * (anchoLadrillo + separacionLadrillos)) + margenLateralLadrillo;
+                            var posicionY = (j * (altoLadrillo + separacionLadrillos)) + margenSuperiorLadrillo;
+                            ladrillos[i][j].x = posicionX;
+                            ladrillos[i][j].y = posicionY;
+                            contexto.beginPath();
+                            contexto.fillStyle = 'rgb(' + Math.floor(255 - 42.5 * i) + ',' + Math.floor(255 - 42.5 * j) + ',0)';
+                            contexto.rect(posicionX, posicionY, anchoLadrillo, altoLadrillo);
+                            contexto.fillRect(posicionX, posicionY, anchoLadrillo, altoLadrillo);
+                            contexto.closePath();
+                        }
+                    }
+                }
+            }
+
+            //funcion para el movimiento con el raton
+            function moverRaton(e) {
+                var relativeX = e.clientX - canvas.offsetLeft;
+                if (relativeX > 0 + paddleWidth / 2 && relativeX < canvas.width - paddleWidth / 2) {
+                    paddleX = relativeX - paddleWidth / 2;
+                }
+            }
+
+            //funcion para detectar las colisiones de los ladrillos
+            function colisionLadrillo() {
+
+                var seguir = true;
+                for (i = 0; i < columnaLadrillos && seguir; i++) {
+                    for (j = 0; j < filaLadrillos && seguir; j++) {
+                        var ladrillo = ladrillos[i][j];
+                        if (ladrillo.status == 1) {
+                            var xini = ladrillo.x;
+                            var xfin = ladrillo.x + anchoLadrillo;
+                            var yini = ladrillo.y;
+                            var yfin = ladrillo.y + altoLadrillo;
+                            var xinipasado = (x + radioPelota >= xini);
+                            var xfinantes = (x - radioPelota <= xfin);
+                            var yinipasado = (y + radioPelota >= yini);
+                            var yfinantes = (y - radioPelota <= yfin);
+
+                            if (x >= xini &&
+                                x <= xfin &&
+                                y >= yini &&
+                                y <= yfin) {
+                                seguir = false;
+                                puntuacion += 100;
+                                ladrillosRotos++;
+                                ladrillos[i][j] = 0;
+                                if (x == xini || x == xfin) {
+                                    direccionx = -direccionx;
+                                } else {
+                                    direcciony = -direcciony;
+                                }
+
+                                if (ladrillosRotos == filaLadrillos * columnaLadrillos) {
+                                    alert("Victoria");
+                                    document.location.reload();
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            function dibujar() {
+                /*debido a que en cada intervalo de tiempo dibuja una pelota ira quedando un rastro
+				y es necesario eliminarlo y eso se consigue mediante este metodo*/
+                contexto.clearRect(0, 0, canvas.width, canvas.height);
+
+                crearLadrillos();
+                crearRaqueta();
+                marcador();
+                crearVidas();
+                crearPelota();
+                colisionLadrillo();
+
+                /*choque en la pared superior (si la posicion es menor de cero cambia su direccion de + a - para descender)
+				borde inferior para finalizar el juego
+				tenemos que tener en cuenta que el ladrillo debera producirse en la line aexterior de la pelota de modo que
+				puede ser hasta los limites de la pantalla si no que hay que usar el radio de la pelota*/
+                if (y + direcciony < radioPelota) {
+                    direcciony = -direcciony;
+                }
+                else if (y + direcciony > canvas.height - radioPelota) {
+                    if (x < paddleX || x > paddleX + paddleWidth) {
+                        	numeroVidas--;
+                        if (numeroVidas == 0) {
+                            alert("GAME OVER");
+                            document.location.reload();
+                        }
+                        else {
+                            x = canvas.width / 2;
+                            y = canvas.height - 30;
+                            direccionx = 1;
+                            direcciony = -1;
+   //                         paddleX = (canvas.width - paddleWidth) / 2;
+                        }
+                    }
+                }
+                else if (y + direcciony > canvas.height - radioPelota - paddleHeight) {
+                    if (x > paddleX && x < paddleX + paddleWidth) {
+                        direcciony = -direcciony;
+
+                    }
+                    //idea para cambiar la direccion de la pelota cuando choque en un determinado lado de la raqueta
+                    /*else if (x > paddleX + paddleWidth / 3 || x < paddleX + paddleWidth - paddleWidth / 3) {
+						direcciony = -direcciony;
+						direccionx = -direccionx;
+					}*/
+                }
+
+                //choque en las paredes laterales usamos el mismo sistema que en las verticales
+                if (x + direccionx > canvas.width - radioPelota || x + direccionx < radioPelota) {
+                    direccionx = -direccionx;
+                }
+
+                //movimiento de la raqueta tras ser pulsada una de las teclas tendremos en cuenta la posicion de la paleta para que no se salga de la pantalla
+                if (derechaPulsada && paddleX < canvas.width - paddleWidth) {
+                    paddleX += 7;
+                }
+                else if (izquierdaPulsada && paddleX > 0) {
+                    paddleX -= 7;
+                }
+
+                x += direccionx;
+                y += direcciony;
+              //  requestAnimationFrame(dibujar);
+
+            }
+
+            //definir eventListener para detectar la pulsacion de la tecla o raton
+            //el primer parametro no se modifica es necesario el metodo keydown o keyup
+            document.addEventListener("keydown", teclaPulsada, false);
+            document.addEventListener("keyup", teclaSinPulsar, false);
+            document.addEventListener("mousemove", moverRaton, false);
+
+            //funcion dibujar sera llamada cada 10 milisegundos
+            //dibujar();
+            setInterval(dibujar, 8);
+		
+		
+		</script>
+	</body>
+</html>

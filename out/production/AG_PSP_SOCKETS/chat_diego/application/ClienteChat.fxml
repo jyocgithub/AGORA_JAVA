@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="357.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chat_diego.application.ClienteChat">
+   <children>
+      <Pane layoutX="6.0" layoutY="14.0" prefHeight="55.0" prefWidth="343.0" styleClass="pane" stylesheets="@application.css">
+         <children>
+            <Label layoutX="10.0" layoutY="22.0" text="Usuario" />
+            <TextField fx:id="_tfUsuario" layoutX="65.0" layoutY="16.0" prefHeight="25.0" prefWidth="78.0" />
+            <Button fx:id="_btConectar" 
+            layoutX="149.0" 
+            layoutY="16.0" 
+            mnemonicParsing="false" 
+            onAction="#onActionConectar" 
+            text="Conectar" />
+            <Button fx:id="_btDesconectar" disable="true" layoutX="237.0" layoutY="16.0" mnemonicParsing="false" onAction="#onActionDesconectar" text="Desconectar" />
+         </children>
+      </Pane>
+      <Pane layoutX="357.0" layoutY="13.0" prefHeight="331.0" prefWidth="148.0" styleClass="pane" stylesheets="@application.css">
+         <children>
+            <Label layoutX="7.0" layoutY="14.0" text="Usuarios conectados" />
+            <TextArea fx:id="_taUsuarios" editable="false" layoutX="14.0" layoutY="29.0" prefHeight="291.0" prefWidth="124.0" />
+         </children>
+      </Pane>
+      <TextArea fx:id="_taConsola" editable="false" layoutX="14.0" layoutY="79.0" prefHeight="200.0" prefWidth="333.0" />
+      <TextArea fx:id="_taEnviar" layoutX="14.0" layoutY="288.0" prefHeight="55.0" prefWidth="261.0" />
+      <Button fx:id="_btEnviar" disable="true" layoutX="283.0" layoutY="288.0" mnemonicParsing="false" onAction="#onActionEnviar" prefHeight="55.0" prefWidth="61.0" text="Enviar" />
+   </children>
+</AnchorPane>

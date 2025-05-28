@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EscenaConMenuController">
+   <children>
+
+      <VBox fx:id="vbMain" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <MenuBar fx:id="menuMain">
+              <menus>
+                <Menu mnemonicParsing="false" text="Abrir ventana login">
+                  <items>
+                    <MenuItem fx:id="idMenu1" mnemonicParsing="false" onAction="#onAbrirLogin" text="ABRIR" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Abrir ventanta 1">
+                  <items>
+                    <MenuItem fx:id="ifMenu2" mnemonicParsing="false" onAction="#onAbrirVentana1" text="ABRIR" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Abrir ventana 2">
+                  <items>
+                    <MenuItem fx:id="ideMEnu3" mnemonicParsing="false" onAction="#onAbrirVentana2" text="ABRIR" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <AnchorPane fx:id="paneMain" prefHeight="374.0" prefWidth="600.0" />
+         </children></VBox>
+   </children>
+</AnchorPane>

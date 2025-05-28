@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-feb-2017 22:33:52 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="inicio.tablapeliculas" table="tablapeliculas">
+        <id name="titulo" type="java.lang.String">
+            <column name="TITULO" />
+            <generator class="assigned" />
+        </id>
+        <property name="genero" type="java.lang.String">
+            <column name="GENERO" />
+        </property>
+        <property name="duracion" type="int">
+            <column name="DURACION" />
+        </property>
+        <property name="actorprincipal" type="java.lang.String">
+            <column name="ACTORPRINCIPAL" />
+        </property>
+    </class>
+</hibernate-mapping>
+
+

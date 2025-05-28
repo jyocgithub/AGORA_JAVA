@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="ap_login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EscenaLoginController">
+  <children>
+    <Button fx:id="bt_acceder" layoutX="50.0" layoutY="148.0" mnemonicParsing="false" onAction="#onAccederPulsado" text="un JButton es un boton" />
+    <TextField fx:id="txt_usuario" layoutX="50.0" layoutY="31.0" prefHeight="26.0" prefWidth="370.0" text="Un JTextField es un campor de texto editable por el usuario" />
+    <Label fx:id="lbl_imagen" layoutX="51.0" layoutY="8.0" text="Un JLabel es un texto simple" />
+    <TextArea layoutX="50.0" layoutY="65.0" prefHeight="70.0" prefWidth="212.0" text="Un JTextArea es un campo &#10;editable multilinea y con scrolls                   " />
+    <CheckBox layoutX="50.0" layoutY="191.0" mnemonicParsing="false" text="Un JCheckBok es un boton de marcado/desmarcado" />
+    <DatePicker layoutX="273.0" layoutY="97.0" prefHeight="26.0" prefWidth="275.0" />
+    <Slider layoutX="51.0" layoutY="333.0" />
+    <Spinner layoutX="52.0" layoutY="229.0" prefHeight="26.0" prefWidth="317.0" />
+    <RadioButton layoutX="50.0" layoutY="270.0" mnemonicParsing="false" text="Un JRadioButton es un boton de seleccion unica" />
+    <RadioButton layoutX="51.0" layoutY="295.0" mnemonicParsing="false" text="Un JRadioBuron es un boton de seleccion unica" />
+    <Label layoutX="211.0" layoutY="332.0" text="Esto es un JSlider, para indicar un valor entre limites" />
+    <Label layoutX="277.0" layoutY="102.0" text="un JFileChooser vale para elegir un fichero" />
+      <Label layoutX="65.0" layoutY="234.0" text="Un JSpinner  permite elegir un valoe entre una lista" />
+  </children>
+</AnchorPane>

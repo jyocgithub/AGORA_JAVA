@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	
+	
+	
+	<script language="javascript" type="text/javascript">
+        function Coche(marca, matricula) {
+
+            // atributos publicos (con this delante)
+            this.marca = marca;
+            this.precio = 20;
+
+            // atributos privados
+            var matricula = matricula;
+            var iva = 21;
+
+            // metodos publicos (con this delante)
+            this.getMarca = function () {
+                return this.marca;
+            }
+            this.getMatricula = function () {
+                return matricula;
+            }
+            this.setMatricula = function (mat) {
+                matricula = comprobarMatricula(mat);
+                this.getMatricula = function () {
+                    return matricula;
+                }
+            }
+            this.setPrecio = function (pre) {
+                this.precio = comprobarPrecio(this, pre);
+            }
+
+            // Metodos privados, no llevan this, solo se usan dentro del constructor
+            comprobarMatricula = function (matri) {
+                if (matri.length != 7) {
+                    return "desconocida";
+                }
+                return matri;
+            }
+
+            // Metodos privados, no llevan this, solo se usan dentro del constructor
+            // Necesario para poder acceder
+            // a this desde los mtodos privados
+            var self = this;
+            comprobarPrecio = function (p_this, prec) {
+                if (p_this.marca == "BMW") {
+                    return prec + 1000;
+                }
+                return prec;
+            }
+
+        }
+
+    header("refresh:3 ; url="cosas-php");
+
+        var micoche1 = new Coche("BMW", "4433DDS")
+        var micoche2 = new Coche("Seat", "9811DAQ")
+
+        console.log("marca:" + micoche1.marca)
+        console.log("marca:" + micoche1.getMarca())
+
+        console.log("matricula:" + micoche1.matricula) // INDEFINIDO pues es privado
+        console.log("matricula:" + micoche1.getMatricula())
+
+        micoche1.setMatricula("002222DBB")
+        console.log("matricula:" + micoche1.getMatricula())
+
+        micoche1.setPrecio(31000);
+        console.log("precio:" + micoche1.precio);
+
+        var persona = { nombre: "pepe", edad: 19, altura: 168, signo: "Aries" }
+        // añadir propiedades enumerables a un objeto
+        Object.defineProperty(persona, "apodo", {
+            value: "Pepeillo",
+            enumerable: true
+        });
+        // añadir propiedades no enumerables a un objeto
+        Object.defineProperty(persona, "peso", {
+            value: 87,
+            enumerable: false
+        });
+        // var Figura = function (c, stroke) {
+        //     // Variable privada
+        //     var _color = c;
+        //     // Variable pblica
+        //     this.stroke = null;
+        //     // Necesario para poder acceder
+        //     // a this desde los mtodos privados
+        //     var self = this;
+        //     // Mtodo privado
+        //     var _setup = function (s) {
+        //         // Ah podemos acceder a mtodos pblicos
+        //         // a travs de self. Y a los privados directamente
+        //         self.stroke = s;
+        //     };
+        //     _setup(stroke);
+        //     // Mtodos pblicos
+        //     this.draw = function () {
+        //         console.log("Figura::draw in color " + _color + " and stroke " + this.stroke);
+        //     };
+        //     this.getColor = function () {
+        //         return _color;
+        //     };
+        // };
+
+
+        // var f = new Figura("red", "thin");
+        // console.log(f._color); // undefined
+        // console.log(f.getColor()); // red
+        // console.log(f.stroke); // thin
+        // //f._setup("thick");  // Error: Object has no method _setup
+
+        // var f2 = new Figura("blue", "thick");
+        // console.log(f2._color); // undefined
+        // console.log(f2.getColor()); // blue
+        // console.log(f2.stroke); // thick
+        // //f._setup("thick");  // Error: Object has no method _setup
+        // f.draw();
+        // f2.draw();
+        // para todas las propiedades enumerables
+        console.log(Object.keys(persona))
+        console.log(Object.keys(persona)[2])
+        // // para todas las propiedades, sean enumerables o no
+        console.log(Object.getOwnPropertyNames(persona))
+        console.log(Object.getOwnPropertyNames(persona)[2])
+	
+	
+	
+	</script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: comunicacion_entre_procesos.ComunicacionEntreProcesos_Hijo
+

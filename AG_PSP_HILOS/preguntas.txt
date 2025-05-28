@@ -1,0 +1,7 @@
+¿Cual es la capital de Suiza?       @@@ Berna
+¿Cual es la capital de España?      @@@ Madrid
+¿Cual es la capital de Reino Unido? @@@ Londres
+¿Cual es la capital de Italia?      @@@ Roma
+¿Cual es la capital de Alemania?    @@@        Berlin
+¿Cual es la capital de Suecia?      @@@        Estocolmo
+¿Cual es la capital de Portugal?    @@@ Lisboa

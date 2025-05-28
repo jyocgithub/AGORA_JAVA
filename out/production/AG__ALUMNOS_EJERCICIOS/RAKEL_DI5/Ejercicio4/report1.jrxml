@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cf8f9a7e-9c9a-4ea9-8830-3e9ddb9481ee">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\rakel\\Documents\\NetBeans\\DI05tarea\\src\\Ejercicio4\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     clientes.`Nombre` AS clientes_Nombre,
+     clientes.`Direccion` AS clientes_Direccion,
+     clientes.`Ciudad` AS clientes_Ciudad,
+     pedidos.`ID_Pedido` AS pedidos_ID_Pedido,
+     pedidos.`Fecha_Pedido` AS pedidos_Fecha_Pedido
+FROM
+     `clientes` clientes INNER JOIN `pedidos` pedidos ON clientes.`ID_Cliente` = pedidos.`ID_Cliente`]]>
+	</queryString>
+	<field name="clientes_Nombre" class="java.lang.String"/>
+	<field name="clientes_Direccion" class="java.lang.String"/>
+	<field name="clientes_Ciudad" class="java.lang.String"/>
+	<field name="pedidos_ID_Pedido" class="java.lang.Integer"/>
+	<field name="pedidos_Fecha_Pedido" class="java.sql.Timestamp"/>
+	<group name="clientes_Nombre">
+		<groupExpression><![CDATA[$F{clientes_Nombre}]]></groupExpression>
+		<groupHeader>
+			<band height="66">
+				<textField>
+					<reportElement x="392" y="0" width="163" height="20" uuid="fa7a8937-88f1-4692-b922-3868d471e04d"/>
+					<textFieldExpression><![CDATA[$F{clientes_Nombre}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="392" y="20" width="163" height="20" uuid="df9f1c75-08d9-4d38-b73e-5ba5e71d1b36"/>
+					<textFieldExpression><![CDATA[$F{clientes_Direccion}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="392" y="40" width="163" height="20" uuid="aeb1457d-cf32-4803-965d-e0d437b938ea"/>
+					<textFieldExpression><![CDATA[$F{clientes_Ciudad}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="0" width="56" height="20" uuid="6c5aa66c-c3d9-453a-8a63-98bf96f98b32"/>
+					<textFieldExpression><![CDATA[$F{pedidos_ID_Pedido}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="82">
+				<line>
+					<reportElement x="11" y="0" width="529" height="1" uuid="84bad85c-54a0-4f99-a318-8b98c643829f"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="36" uuid="a639d2c7-531e-4f1b-a3b6-3b081f5ff630"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACTURA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="173" splitType="Stretch">
+			<subreport>
+				<reportElement x="11" y="24" width="529" height="114" uuid="9b65db90-500e-4ba9-b555-05fdb15a4acf"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "report1_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="107" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="108" splitType="Stretch">
+			<subreport>
+				<reportElement x="242" y="17" width="281" height="55" uuid="4ab538b2-aa49-4d94-ac44-ed510e8b1c81"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "report1_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

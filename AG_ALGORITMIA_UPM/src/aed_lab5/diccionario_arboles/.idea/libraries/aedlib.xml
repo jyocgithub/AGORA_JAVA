@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="aedlib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../uni/3ºaño/Algoritmos/aedlib.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

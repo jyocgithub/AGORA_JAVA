@@ -1,0 +1,41 @@
+Tarea para PSP03.
+Detalles de la tarea de esta unidad.
+Enunciado.
+Actividad para PSP03.
+
+El objetivo del ejercicio es crear una aplicación cliente/servidor que permita el envío de ficheros de texto (.txt) al cliente. Para ello, el cliente se conectará al servidor por el puerto 2223 y le solicitará el nombre de un fichero del servidor.
+
+Primero, el cliente le manda al servidor el nombre del fichero.
+
+Si el fichero existe, el servidor, le enviará el fichero al cliente y éste lo mostrará por pantalla y creará un fichero en local con el mismo nombre que el que está en el servidor.
+
+Para realizarlo ten en cuenta: 
+
+El servidor abrirá el fichero y enviará línea a línea el contenido del fichero al cliente. Cuando termine de enviar todas las líneas, el servidor enviará al cliente un mensaje de que ya ha terminado de enviar las líneas (EOF).
+
+El cliente, leerá las líneas enviadas por el servidor y las mostrará y guardará en un fichero por pantalla hasta que se reciba el mensaje EOF.
+
+Si el fichero no existe, el servidor le enviará al cliente un mensaje de error. Una vez que el cliente ha mostrado el fichero se finalizará la conexión.
+
+ 
+
+Criterios de puntuación. Total 10 puntos.
+Conexión entre cliente y servidor (0,5)
+Uso de clases adecuadas para el control de flujo de datos (1)
+Secuencia de mensajes se ajusta al enunciado (2)
+Funcionamiento según los requisitos del enunciado. (4)
+Tratamiento individual de cada una de las posibles excepciones y errores, tanto en el cliente como en el servidor. (1).
+Cierre de todos los recursos abiertos (1).
+Documentación. (0,5)
+Recursos necesarios para realizar la Tarea.
+Para realización de la actividad tan sólo es necesario tener instalado el entorno de desarrollo de Java.
+Consejos y recomendaciones.
+Leer detenidamente el contenido de la unidad.
+Indicaciones de entrega.
+Una vez realizada la tarea elaborarás un único zip donde irán las carpetas de los dos proyectos (el del cliente y el del servidor). El envío se realizará a través de la plataforma de la forma establecida para ello, y el archivo se nombrará siguiendo las siguientes pautas:
+
+apellido1_apellido2_nombre_SIGxx_Tarea
+
+Asegúrate que el nombre no contenga la letra ñ, tildes ni caracteres especiales extraños. Así por ejemplo la alumna Begoña Sánchez Mañas para la tercera unidad del MP de PSP, debería nombrar esta tarea como...
+
+sanchez_manas_begona_PSP03_Tarea

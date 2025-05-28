@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ALMACEN_CENTRAL>
+    <articulos>
+        <Condiciones id="12">
+            <nombre>T12</nombre>
+            <descripcion>Tornillo de punta plana</descripcion>
+            <precio>12.23</precio>
+            <cantidad>130</cantidad>
+        </Condiciones>
+        <Condiciones id="13">
+            <nombre>M5qq</nombre>
+            <descripcion>Martillo de cabeza de goma</descripcion>
+            <precio>13.77</precio>
+            <cantidad>60</cantidad>
+        </Condiciones>
+        <Condiciones id="15">
+            <nombre>NB55E</nombre>
+            <descripcion>Lija de 5 gramos</descripcion>
+            <precio>6.23</precio>
+            <cantidad>2000</cantidad>
+        </Condiciones>
+    </articulos>
+    <nombre>zona sur</nombre>
+</ALMACEN_CENTRAL>

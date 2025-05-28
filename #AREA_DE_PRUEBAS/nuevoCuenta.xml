@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<impresoras>
+    <impresora numSerie="i245" tipo="láser" compra="2010">
+        <marca>Epson</marca>
+        <modelo>EPL300</modelo>
+        <peso>4.52</peso>
+        <tamaño>A4</tamaño>
+        <tamaño>A5</tamaño>
+        <cartucho>C-123BV</cartucho>
+        <enred/>
+    </impresora>
+    <impresora numSerie="i246" tipo="matricial">
+        <marca>HP</marca>
+        <modelo>LaserJet 2410</modelo>
+        <peso>3.2</peso>
+        <tamaño>A4</tamaño>
+        <cartucho>C-456P</cartucho>
+    </impresora>
+</impresoras>
+
+
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:complexType name="tipo_impresora">
+    <xs:sequence>
+        <xs:element name="marca" type="xs:string"/>
+
+        <xs:element name="modelo" type="xs:string"/>
+
+        <xs:element name="peso">
+            <xs:simpleType>
+                <xs:restriction base="xs:decimal">
+                    <xs:minInclusive value="0"/>
+                    <xs:fractionDigits value="2"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+
+        <xs:element name="tamaño" type="xs:string" maxOccurs="unbounded"/>
+        <xs:element name="cartucho" type="xs:string">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[C-[0-9]{3}[A-Z]{1,2}"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+
+        <xs:element name="enred" type="xs:string" minOccurs="0" fixed=""/>
+    </xs:sequence>
+
+    <xs:attribute name="numSerie" type="xs:ID" use="required"/>
+
+    <xs:attribute name="tipo" use="required">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="matricial"/>
+                <xs:enumeration value="laser"/>
+                <xs:enumeration value="tinta"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+
+    <xs:attribute name="compra" type="xs:integer">
+        <xs:simpleType>
+            <xs:restriction base="xs:decimal">
+                <xs:minInclusive value="0"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+
+</xs:complexType>
+
+
+<xs:element name="impresoras">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="impresora" type="tipo_impresora" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>

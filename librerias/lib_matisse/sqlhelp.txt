@@ -1,0 +1,3254 @@
+/*
+ *
+ *  sqlhelp.txt
+ *
+ *
+ *  Creation Date:      1993/07/20
+ *
+ *  Modification Date:  2018/06/02
+ *
+ *
+ *  Copyright (c) 1992-2018 Matisse Software Inc. All Rights Reserved.
+ *
+ *  This software and related documentation are confidential and proprietary
+ *  information of Matisse Software Inc. Its use is governed by terms of
+ *  the Matisse(R) Binary Code License Agreement.
+ *  Do not copy or redistribute these files without express written
+ *  permission and/or pursuant to a license from Matisse Software Inc.
+ *
+ */
+
+                ------------------------------------------
+                mt_sql command line option and online help
+                ------------------------------------------
+
+command line options:
+
+  mt_sql -d [<user>:]<database>[@<host>[:<port>]] [-qpsmbhV]
+    -q, --quiet        No output is printed including 'sql>' prompt
+    -V, --version      Print version and exit
+    -p, --passwd=...   Use password (not safe)
+    -d, --database=... Database dbname@host
+    -s, --size=<n>     Display size for string types (default 20)
+    -t, --time         Measure query execution elasped time
+    -Q, --noresult     Read the result, but does not print it out
+    -m, --shmem        Use shared memory
+    -b, --buffer=<n>   Increase buffer size to 128 or 256 (default 64)
+    -h, --help         Display this help and exit
+
+sql> help summary
+
+SQL Command Summary
+  Type 'help command' to see a summary description of each command.
+
+Schema Manipulation
+  create namespace         alter namespace          drop namespace
+  create class             alter class              drop class
+  create index             drop index
+  create entry point       drop entry point
+  create method            drop method              compile
+
+Data Access
+  select                   from                     where
+  group by                 order by                 expression               
+  join                     oid                      ref
+  distinct                 filtered                 parallel
+  unfiltered
+
+Selections
+  selection                into selection           drop selection
+  union                    intersect                except
+  selection add            selection add_all        selection clear
+  selection contains       selection count          selection get
+  selection insert         selection remove         selection remove_at
+  selection remove_duplicates                       selection set
+
+Transactions
+  set transaction          commit                   rollback
+
+Data Modification
+  insert                   update                   delete
+
+Attributes & Relationships
+  simple types             large objects            list types
+  timestamp                relationship             count relationship
+  attribute types          
+
+Pseudo Columns
+  MtOid                    MtFullName               MtAllSuperclasses
+  MtClassName              MtAllAttributes          MtAllInverseRelationships
+  MtClassOid               MtAllRelationships       MtAllMethods
+  MtFullClassName          MtAllSubclasses          MtAllSubnamespaces
+
+Predicates
+  between                  like                     entry_point
+  escape                   in                       is null
+  is of                    comparison               is default
+
+Expressions
+  coalesce                 nullif
+
+String Functions
+  concat                   instr                    left
+  length                   locate                   lower
+  lpad                     ltrim                    replace
+  replicate                reverse                  right
+  rpad                     rtrim                    substr
+  trim                     upper
+
+List Functions
+  list avg                 element                  list max
+  list min                 sublist                  list sum
+  list count               list
+
+Set Functions
+  avg                      max                      min
+  sum                      count
+
+Date and Time Functions
+  extract                  current_date             current_timestamp
+
+Mathematical Functions
+  abs                      acos                     asin   
+  atan                     atan2                    ceiling    
+  cos                      cot                      degrees 
+  exp                      floor                    ln
+  log10                    log2                     log 
+  mod                      pi                       power
+  radians                  round                    sign
+  sin                      sqrt                     tan
+  truncate
+
+Other Functions
+  operators                bit_count                cast
+
+System Defined Methods
+  isMetaSchema             isPredefinedObject
+
+Procedure and Control Statements
+  begin                    call                     cast
+  declare                  for                      if
+  leave                    return                   while
+  loop                     repeat                   iterate
+  set assignment           block statement
+
+Exception Handling
+  handler                  user exception           signal
+  resignal
+
+Debugging Functions
+  psm_output               print                    print_line
+  print_variable           enable                   disable
+
+Options & Misc
+  set current_namespace    set connection_option    set explain
+  set memory_quota         set optimize             help
+  quit
+
+sql> help set
+
+Type 'help set transaction' for information about transaction or version access.
+Type 'help set current_namespace' for information about setting a default namespace.
+Type 'help set connection_option' for information about the connection options.
+Type 'help set explain' for information about setting the explain mode.
+Type 'help set optimize' for information about the SQL compiler optimization option.
+Type 'help set memory_quota' for information about the execution memory quota option.
+Type 'help set assignment' for information about the PSM assignement statement.
+
+sql> help create
+
+Type 'help create namespace' for information on creating a new namespace.
+Type 'help create class' for information on creating a new class.
+Type 'help create index' for information on creating a new index.
+Type 'help create entry point' for information on creating a new dictionary.
+Type 'help create method' for information on creating a new method.
+
+sql> help alter
+
+Type 'help alter namespace' for information on modifying a namespace.
+Type 'help alter class' for information on modifying a class.
+
+sql> help drop
+
+Type 'help drop namespace' for information on deleting a namespace.
+Type 'help drop class' for information on deleting a class.
+Type 'help drop index' for information on deleting an index.
+Type 'help drop entry point' for information on deleting a dictionary.
+Type 'help drop selection' for information on deleting a selection.
+Type 'help drop method' for information on deleting a method.
+
+sql> help attribute
+
+Type 'help simple types' for information on simple types.
+Type 'help large objects' for information on large object types.
+Type 'help list types' for information on list types.
+Type 'help attribute types' for information on all the attribute types.
+
+sql> help attributes
+
+Type 'help simple types' for information on simple types.
+Type 'help large objects' for information on large object types.
+Type 'help list types' for information on list types.
+Type 'help attribute types' for information on all the attribute types.
+
+sql> help relationships
+
+Type 'help relationship' for information on relationship navigation.
+
+sql> help relationship navigation
+
+Type 'help relationship' for information on relationship navigation.
+
+sql> help index
+
+Type 'help create index' for information on creating a new index.
+Type 'help drop index' for information on deleting an index.
+
+sql> help transaction
+
+Type 'help set transaction' for information on starting a transaction
+Type 'help commit' for information on transaction commit
+Type 'help rollback' for information on transaction rollback
+
+sql> help predicate
+
+Type 'help comparison' for information on comparison operators    
+Type 'help between' for information on interval tests    
+Type 'help like' for information on pattern matching  
+Type 'help entry_point' for information on text searching 
+Type 'help escape' for information on escape characters    
+Type 'help in' for information on inclusion 
+Type 'help is of' for information on class type checking     
+Type 'help is null' for information on null value checks
+Type 'help is default' for information on default value checks
+
+sql> help predicates
+
+Type 'help comparison' for information on comparison operators    
+Type 'help between' for information on interval tests    
+Type 'help like' for information on pattern matching  
+Type 'help entry_point' for information on text searching 
+Type 'help escape' for information on escape characters    
+Type 'help in' for information on inclusion 
+Type 'help is of' for information on class type checking     
+Type 'help is null' for information on null value checks
+Type 'help is default' for information on default value checks
+
+sql> help expressions
+
+Type 'help coalesce' for information on coalesce expression     
+Type 'help nullif' for information on nullif expression
+
+sql> help string functions
+
+Type 'help <function name>' for information on the string manipulation
+functions    
+  concat                   instr                    left
+  length                   locate                   lower
+  lpad                     ltrim                    replace
+  replicate                reverse                  right
+  rpad                     rtrim                    substr
+  trim                     upper
+
+sql> help math functions
+
+Type 'help <function name>' for information on the mathematical functions    
+  abs                      acos                     asin   
+  atan                     atan2                    ceiling    
+  cos                      cot                      degrees 
+  exp                      floor                    ln
+  log10                    log2                     log 
+  mod                      pi                       power
+  radians                  round                    sign
+  sin                      sqrt                     tan
+  truncate
+
+
+
+sql> help pseudo columns
+
+Type 'help <pseudo column>' for information on the pseudo column
+  MtOid                    MtFullName               MtAllSuperclasses
+  MtClassName              MtAllAttributes          MtAllInverseRelationships
+  MtClassOid               MtAllRelationships       MtAllMethods
+  MtFullClassName          MtAllSubclasses          MtAllSubnamespaces
+
+sql> help print
+
+Type 'help psm_output' for information on debugging SQL methods.
+
+sql> help print_line
+
+Type 'help psm_output' for information on debugging SQL methods.
+
+sql> help print_variable
+
+Type 'help psm_output' for information on debugging SQL methods.
+
+sql> help enable
+
+Type 'help psm_output' for information on debugging SQL methods.
+
+sql> help diable
+
+Type 'help psm_output' for information on debugging SQL methods.
+
+sql> help set transaction
+
+Syntax:  SET TRANSACTION READ 
+           {ONLY [<version>]
+           |WRITE [<priority>]}
+
+Purpose: Start a version access (read-only transaction) or a transaction.
+         For version access, the name of a previously saved <version> may
+         be specified. The default version is the latest one.
+         Transaction may take a transaction priority <priority> that is 
+         between 0 and 9. The default priority is 0.
+
+Example: SET TRANSACTION READ WRITE;
+         .. update statements ..
+         COMMIT;
+
+sql> help commit
+
+Syntax:  COMMIT [WORK] {VERSION <version>}
+
+Purpose: Commit the transaction or end the version access.
+         When in read write mode a version name <version> is given, the
+         version is saved with the given name in the database.
+
+Scope:   Not allowed in SQL methods
+
+sql> help rollback
+
+Syntax:  ROLLBACK [WORK]
+
+Purpose: Abort the current transaction and undo all the changes
+
+Scope:   Not allowed in SQL methods
+
+sql> help create namespace
+
+Syntax:  CREATE NAMESPACE [IF [NOT] EXISTS [schema_object]] <nsname>.<subnsname>
+
+         With schema_object such as:
+
+         schema_object ::=
+          SCHEMA_OBJECT(NAMESPACE,[<ns path name>.]<ns name>)
+          | SCHEMA_OBJECT(CLASS,[<ns path name>.]<class name>)
+          | SCHEMA_OBJECT(ATTRIBUTE,[<ns path name>.]<cls name>.<att name>)
+          | SCHEMA_OBJECT(RELATIONSHIP,[<ns path name>.]<cls name>.<rel name>)
+          | SCHEMA_OBJECT(METHOD,[<ns path name>.]<cls name>.<mth name>)
+          | SCHEMA_OBJECT(INDEX,[<ns path name>.]<index name>)
+          | SCHEMA_OBJECT(ENTRY_POINT DICTIONARY,[<ns path name>.]<entry point name>)
+
+Purpose: Define a new namespace for classes, indexes, etc.
+
+Scope:   Not allowed in SQL methods
+
+Example: CREATE NAMESPACE mainmodule;
+
+         CREATE NAMESPACE IF NOT EXISTS mainmodule.submodule1;
+
+See also: 'set current_namespace', 'alter namespace' 'drop namespace'
+
+sql> help create class
+
+Syntax:  CREATE {CLASS | TABLE} [IF [NOT] EXISTS [schema_object]] <class>
+           [ {UNDER | INHERIT} <superclass> [, ...] ]
+         (
+           <attribute> <attribute_type> [DEFAULT literal] [NOT NULL]
+             [, ...]
+           <relationship> [READONLY] REFERENCES
+             [SET | LIST] ( <succ_class> [, ...] )
+             [CARDINALITY (<min>, <max>)]
+             [INVERSE <inv_class>.<inverse_rshp>]
+             [, ...]
+           [CONSTRAINT <name>] {UNIQUE | PRIMARY KEY} (<attribute> [, ...])
+           [CONSTRAINT <name>] FOREIGN KEY (<attribute> [, ...])
+              REFERENCES <referenced_class> (<attribute> [, ...])
+         )
+
+         With schema_object such as:
+
+         schema_object ::=
+          SCHEMA_OBJECT(NAMESPACE,[<ns path name>.]<ns name>)
+          | SCHEMA_OBJECT(CLASS,[<ns path name>.]<class name>)
+          | SCHEMA_OBJECT(ATTRIBUTE,[<ns path name>.]<cls name>.<att name>)
+          | SCHEMA_OBJECT(RELATIONSHIP,[<ns path name>.]<cls name>.<rel name>)
+          | SCHEMA_OBJECT(METHOD,[<ns path name>.]<cls name>.<mth name>)
+          | SCHEMA_OBJECT(INDEX,[<ns path name>.]<index name>)
+          | SCHEMA_OBJECT(ENTRY_POINT DICTIONARY,[<ns path name>.]<entry point name>)
+
+Purpose: Define a new class <class> with attributes and relationships.
+
+Scope:   Not allowed in SQL methods
+
+Example: CREATE CLASS movie (
+           movieId    STRING NOT NULL,
+           synopsis   VARCHAR (1000),
+           title      STRING NOT NULL,
+           category   STRING DEFAULT 'non genre',
+           directedBy REFERENCES (movieDirector)
+             CARDINALITY (0, 1)
+             INVERSE movieDirector.direct,
+           CONSTRAINT unique_movieId UNIQUE (movieId)
+         );
+
+         CREATE CLASS IF NOT EXISTS movieDirector INHERIT artist (
+           direct REFERENCES SET (movie)
+             INVERSE movie.directedBy
+         )
+
+See also: 'attribute types'
+
+sql> help method
+
+Purpose: Instance and static methods constitute the core of the Matisse
+         SQL programmable server functionality.
+
+Example: To execute the instance method getFullName in a WHERE clause:
+
+          SELECT e.* FROM Employee e WHERE e.getFullName() = 'Bob Doe';      
+
+See also 'block statement', 'call', 'create method'
+
+sql> help create method
+
+Syntax:  CREATE [INSTANCE | STATIC] METHOD [IF [NOT] EXISTS [schema_object]] <method name>
+         ( <parameter declaration> [, ... ] )
+         RETURNS <data type>
+         FOR <class name>
+         BEGIN
+           <statement>; 
+           [ ... ]
+         END;
+
+         <parameter declaration> ::=
+           [ IN ] <parameter name> <data type> 
+
+         With schema_object such as:
+
+         schema_object ::=
+          SCHEMA_OBJECT(NAMESPACE,[<ns path name>.]<ns name>)
+          | SCHEMA_OBJECT(CLASS,[<ns path name>.]<class name>)
+          | SCHEMA_OBJECT(ATTRIBUTE,[<ns path name>.]<cls name>.<att name>)
+          | SCHEMA_OBJECT(RELATIONSHIP,[<ns path name>.]<cls name>.<rel name>)
+          | SCHEMA_OBJECT(METHOD,[<ns path name>.]<cls name>.<mth name>)
+          | SCHEMA_OBJECT(INDEX,[<ns path name>.]<index name>)
+          | SCHEMA_OBJECT(ENTRY_POINT DICTIONARY,[<ns path name>.]<entry point name>)
+
+
+Purpose: Define a new method.
+
+Scope:   Not allowed in SQL methods
+
+Example: CREATE METHOD getFullName (first BOOLEAN)
+         RETURNS STRING
+         FOR artist
+         BEGIN
+           DECLARE result STRING;
+           IF first = TRUE THEN
+             SET result = CONCAT(firstName, lastName);
+           ELSE
+             SET result = CONCAT(lastName, firstName);
+           END IF;
+           RETURN result;
+         END;
+
+See also: 'call', 'drop method', 'method'
+
+sql> help drop method
+
+Syntax:  DROP METHOD [IF [NOT] EXISTS [schema_object]] <method name> FOR <class name>
+
+         With schema_object such as:
+
+         schema_object ::=
+          SCHEMA_OBJECT(NAMESPACE,[<ns path name>.]<ns name>)
+          | SCHEMA_OBJECT(CLASS,[<ns path name>.]<class name>)
+          | SCHEMA_OBJECT(ATTRIBUTE,[<ns path name>.]<cls name>.<att name>)
+          | SCHEMA_OBJECT(RELATIONSHIP,[<ns path name>.]<cls name>.<rel name>)
+          | SCHEMA_OBJECT(METHOD,[<ns path name>.]<cls name>.<mth name>)
+          | SCHEMA_OBJECT(INDEX,[<ns path name>.]<index name>)
+          | SCHEMA_OBJECT(ENTRY_POINT DICTIONARY,[<ns path name>.]<entry point name>)
+
+Purpose: Delete a SQL method.
+
+Scope:   Not allowed in SQL methods
+
+Example: DROP METHOD IF EXISTS getFullName FOR artist
+
+See also: 'create method'
+
+sql> help compile
+
+Syntax:  COMPILE METHOD <method name> FOR <class name>
+
+         COMPILE ALL
+
+Scope:   Not allowed in SQL methods
+
+Purpose: Recompile a method, or all the methods in the database.
+
+sql> help attribute types
+
+Possible types:
+          BOOLEAN                                   |
+          AUDIO [(<max>)]                           |
+          IMAGE [(<max>)]                           |
+          VIDEO [(<max>)]                           |
+          TEXT [(<max>)]  [<char_code>]             |
+          CLOB [(<max>)]  [<char_code>]             |
+          BYTE | TINYINT                            |
+          SHORT | SMALLINT                          |
+          INTEGER                                   |
+          LONG | BIGINT                             |
+          NUMERIC [(<precision> [, <scale>])]       |
+          FLOAT | REAL                              |
+          DOUBLE [PRECISION]                        |
+          CHAR | CHARACTER                          |
+          STRING [<char_code>]                      |
+          VARCHAR [(<n>)] [<char_code>]             |
+          CHARACTER VARYING [<char_code>]           |
+          DATE                                      |
+          TIMESTAMP                                 |
+          INTERVAL                                  |
+          LIST(BOOLEAN)                             |
+          BYTES [(<max>)] | BLOB [(<max>)]          |
+          LIST(SHORT)                               |
+          LIST(INTEGER)                             |
+          LIST(LONG)                                |
+          LIST(NUMERIC [(<precision> [, <scale>])]) |
+          LIST(FLOAT)                               |
+          LIST(DOUBLE)                              |
+          LIST(STRING)                              |
+          LIST(DATE)                                |
+          LIST(TIMESTAMP)                           |
+          LIST(INTERVAL)                            |
+          ANY                                       |
+          OID                                       |
+          NULL
+
+  <char_code> ::= CHARACTER SET UTF16
+
+
+sql> help MtOid
+
+Syntax:  MtObject.MtOid
+
+Purpose: Pseudo column of type attribute defined on the MtObject class
+         which provides the Oid of an object. 
+
+Example: SELECT MtOid, Title FROM Movie;
+
+See also: 'pseudo columns'
+
+sql> help MtClassName
+
+Syntax:  MtObject.MtClassName
+
+Purpose: Pseudo column of type attribute defined on the MtObject class
+         which provides the class name of an object. 
+
+Example: SELECT MtClassName, LastName FROM Artist;
+
+See also: 'pseudo columns'
+
+sql> help MtClassOid
+
+Syntax:  MtObject.MtClassOid
+
+Purpose: Pseudo column of type attribute defined on the MtObject class
+         which provides the class Oid of an object. 
+
+Example: SELECT MtClassOid, LastName FROM Artist;
+
+See also: 'pseudo columns'
+
+sql> help MtFullClassName
+
+Syntax:  MtObject.MtFullClassName
+
+Purpose: Pseudo column of type attribute defined on the MtObject class
+         which provides the fully qualified class name of an object. 
+
+Example: SELECT MtFullClassName, LastName FROM Artist;
+
+See also: 'pseudo columns'
+
+sql> help MtFullName
+
+Syntax:  MtClass.MtFullName
+         MtIndex.MtFullName
+         MtEntryPointDictionary.MtFullName
+         MtAttribute.MtFullName
+         MtRelationship.MtFullName
+
+Purpose: Pseudo column of type attribute defined on the meta-schema classes 
+         MtClass, MtIndex, MtEntryPointDictionary, MtAttribute and 
+         MtRelationship which provides the fully qualified name of an schema 
+         object. 
+
+Example: SELECT MtFullName FROM MtClass;
+
+See also: 'pseudo columns'
+
+sql> help MtAllAttributes
+
+Syntax:  MtClass.MtAllAttributes
+
+Purpose: Pseudo column of type relationship defined on the MtClass meta-class
+         which returns the combination of the MtAttributes relationship value
+         produced at in each individual level of the class hierarchy.
+
+Example: SELECT MtName,MtAttributes.MtName,MtAllAttributes.MtName FROM MtClass;
+
+See also: 'pseudo columns'
+
+sql> help MtAllRelationships
+
+Syntax:  MtClass.MtAllRelationships
+
+Purpose: Pseudo column of type relationship defined on the MtClass meta-class
+         which returns the combination of the MtRelationships relationship value
+         produced at in each individual level of the class hierarchy.
+
+Example: SELECT MtName, MtRelationships.MtName, MtAllRelationships.MtName 
+         FROM MtClass;
+
+See also: 'pseudo columns'
+
+sql> help MtAllSubclasses
+
+Syntax:  MtClass.MtAllSubclasses
+
+Purpose: Pseudo column of type relationship defined on the MtClass meta-class
+         which returns the combination of the MtSubclasses relationship value
+         produced at in each individual level of the class hierarchy.
+
+Example: SELECT MtName, MtSubclasses.MtName, MtAllSubclasses.MtName 
+         FROM MtClass;
+
+See also: 'pseudo columns'
+
+sql> help MtAllSuperclasses
+
+Syntax:  MtClass.MtAllSuperclasses
+
+Purpose: Pseudo column of type relationship defined on the MtClass meta-class
+         which returns the combination of the MtSuperclasses relationship value
+         produced at in each individual level of the class hierarchy.
+
+Example: SELECT MtName, MtSuperclasses.MtName, MtAllSuperclasses.MtName 
+         FROM MtClass;
+
+See also: 'pseudo columns'
+
+sql> help MtAllInverseRelationships
+
+Syntax:  MtClass.MtAllInverseRelationships
+
+Purpose: Pseudo column of type relationship defined on the MtClass meta-class
+         which returns the combination of the MtInverseRelationships
+         relationship value produced at in each individual level of the class 
+         hierarchy.
+
+Example: SELECT MtName, MtInverseRelationships.MtName, 
+                MtAllInverseRelationships.MtName 
+         FROM MtClass;
+
+See also: 'pseudo columns'
+
+sql> help MtAllMethods
+
+Syntax:  MtClass.MtAllMethods
+
+Purpose: Pseudo column of type relationship defined on the MtClass meta-class
+         which returns the combination of the MtMethods relationship value
+         produced at in each individual level of the class hierarchy.
+
+Example: SELECT MtName, MtMethods.MtName, MtAllMethods.MtName FROM MtClass;
+
+See also: 'pseudo columns'
+
+sql> help MtAllSubnamespaces
+
+Syntax:  MtNamespace.MtAllSubnamespaces
+
+Purpose: Pseudo column of type relationship defined on the MtNamespace 
+         meta-class which returns the combination of the MtNamespaces 
+         relationship value produced at in each individual level of the
+         namespace path.
+
+Example: SELECT MtName, MtNamespaces.MtName, MtAllSubnamespaces.MtName 
+         FROM MtNamespace;
+
+See also: 'pseudo columns'
+
+sql> help alter namespace
+
+Syntax:  ALTER NAMESPACE [IF [NOT] EXISTS [schema_object]] <nsname>[.<subnsname>] RENAME TO <new_nsname>
+
+         With schema_object such as:
+
+         schema_object ::=
+          SCHEMA_OBJECT(NAMESPACE,[<ns path name>.]<ns name>)
+          | SCHEMA_OBJECT(CLASS,[<ns path name>.]<class name>)
+          | SCHEMA_OBJECT(ATTRIBUTE,[<ns path name>.]<cls name>.<att name>)
+          | SCHEMA_OBJECT(RELATIONSHIP,[<ns path name>.]<cls name>.<rel name>)
+          | SCHEMA_OBJECT(METHOD,[<ns path name>.]<cls name>.<mth name>)
+          | SCHEMA_OBJECT(INDEX,[<ns path name>.]<index name>)
+          | SCHEMA_OBJECT(ENTRY_POINT DICTIONARY,[<ns path name>.]<entry point name>)
+
+Purpose: This statement renames an existing namespace <subnsname>.
+
+Scope:   Not allowed in SQL methods
+
+Example: ALTER NAMESPACE IF EXISTS mainmodule.submodule1 RENAME TO sub1;
+
+See also: 'drop namespace'
+   
+sql> help alter class
+
+Syntax:  ALTER {CLASS | TABLE} [IF [NOT] EXISTS [schema_object]] <class>
+           DROP { ATTRIBUTE <attribute> 
+                | RELATIONSHIP <relationship>
+                | {INHERIT | UNDER} <superclass>  
+                }
+
+         ALTER {CLASS | TABLE} <class>
+           ADD { ATTRIBUTE <attribute> <attribute_type>
+                   [DEFAULT <literal>] [NOT NULL]
+               | RELATIONSHIP <relationship>
+                   [[READONLY] REFERENCES [SET | LIST]]
+                     ( <succ_class> [, ...] )
+                   [CARDINALITY (<min>, <max>)]
+                   [INVERSE <inv_class>.<inverse_rshp>]
+               | {INHERIT | UNDER} <superclass>
+               }
+
+         ALTER {CLASS | TABLE} <class>
+           ALTER { ATTRIBUTE <attribute> <attribute_type>
+                     [DEFAULT <literal>] [NOT NULL]
+                 | RELATIONSHIP <relationship>
+                     [[READONLY] REFERENCES [SET | LIST]]
+                       ( <succ_class> [, ...] )
+                     [CARDINALITY (<min>, <max>)]
+                     [INVERSE <inv_class>.<inverse_rshp>]
+                 }
+
+         ALTER {CLASS | TABLE} <class>
+           RENAME { TO <new_class_name>
+                  | ATTRIBUTE <attribute> TO <new_attribute_name>
+                  | RELATIONSHIP <relationship> TO <new_relationship_name>
+                  }
+
+         With schema_object such as:
+
+         schema_object ::=
+          SCHEMA_OBJECT(NAMESPACE,[<ns path name>.]<ns name>)
+          | SCHEMA_OBJECT(CLASS,[<ns path name>.]<class name>)
+          | SCHEMA_OBJECT(ATTRIBUTE,[<ns path name>.]<cls name>.<att name>)
+          | SCHEMA_OBJECT(RELATIONSHIP,[<ns path name>.]<cls name>.<rel name>)
+          | SCHEMA_OBJECT(METHOD,[<ns path name>.]<cls name>.<mth name>)
+          | SCHEMA_OBJECT(INDEX,[<ns path name>.]<index name>)
+          | SCHEMA_OBJECT(ENTRY_POINT DICTIONARY,[<ns path name>.]<entry point name>)
+
+Purpose: ALTER CLASS DROP statement deletes an attribute <attribute>, a
+         relationship <relationship>, or a superclass <superclass> in
+         a class <class>.
+
+         ALTER CLASS ADD statement adds a new attribute <attribute>, a
+         relationship <relationship>, or a superclass <superclass> in a class
+         <class>. For the definition of each attribute or relationship, 
+         type 'help create class'.
+
+         ALTER CLASS ALTER statement modifies an existing attribute <attribute>
+         or an existing relationship <relationship>. For the definition of
+         each attribute or relationship, type 'help create class'.
+
+         ALTER CLASS RENAME statement renames an existing class <class>,
+         an existing attribute <attribute> or an existing 
+         relationship <relationship>.
+
+Scope:   Not allowed in SQL methods
+
+Example: ALTER CLASS movie IF EXISTS SCHEMA_OBJECT(ATTRIBUTE,movie.synopsis) DROP ATTRIBUTE synopsis;
+
+         ALTER CLASS movie ADD INHERIT media;
+
+         ALTER CLASS movie IF NOT EXISTS SCHEMA_OBJECT(ATTRIBUTE,movie.releasedDate) ADD ATTRIBUTE releasedDate DATE;
+
+         ALTER CLASS movie 
+           ADD RELATIONSHIP starring REFERENCES (artist)
+               INVERSE artist.biography;
+
+         ALTER CLASS movie
+           ALTER ATTRIBUTE category STRING NOT NULL;
+
+         ALTER CLASS movie 
+           ALTER RELATIONSHIP starring REFERENCES (artist)
+                 CARDINALITY (0, 10)
+                 INVERSE artist.biography;
+
+         ALTER CLASS IF EXISTS movie
+           RENAME TO new_movies;
+
+         ALTER CLASS IF NOT EXISTS SCHEMA_OBJECT(ATTRIBUTE,movie.new_category) movie
+           RENAME ATTRIBUTE category TO new_category;
+
+sql> help drop namespace
+
+Syntax:  DROP NAMESPACE [IF [NOT] EXISTS [schema_object] <nsname>[.<subnsname>]
+
+         With schema_object such as:
+
+         schema_object ::=
+          SCHEMA_OBJECT(NAMESPACE,[<ns path name>.]<ns name>)
+          | SCHEMA_OBJECT(CLASS,[<ns path name>.]<class name>)
+          | SCHEMA_OBJECT(ATTRIBUTE,[<ns path name>.]<cls name>.<att name>)
+          | SCHEMA_OBJECT(RELATIONSHIP,[<ns path name>.]<cls name>.<rel name>)
+          | SCHEMA_OBJECT(METHOD,[<ns path name>.]<cls name>.<mth name>)
+          | SCHEMA_OBJECT(INDEX,[<ns path name>.]<index name>)
+          | SCHEMA_OBJECT(ENTRY_POINT DICTIONARY,[<ns path name>.]<entry point name>)
+
+Purpose: Remove a namespace <subnsname>.
+
+Scope:   Not allowed in SQL methods
+
+sql> help drop class
+
+Syntax:  DROP {CLASS | TABLE}  [IF [NOT] EXISTS [schema_object] <class>
+
+         With schema_object such as:
+
+         schema_object ::=
+          SCHEMA_OBJECT(NAMESPACE,[<ns path name>.]<ns name>)
+          | SCHEMA_OBJECT(CLASS,[<ns path name>.]<class name>)
+          | SCHEMA_OBJECT(ATTRIBUTE,[<ns path name>.]<cls name>.<att name>)
+          | SCHEMA_OBJECT(RELATIONSHIP,[<ns path name>.]<cls name>.<rel name>)
+          | SCHEMA_OBJECT(METHOD,[<ns path name>.]<cls name>.<mth name>)
+          | SCHEMA_OBJECT(INDEX,[<ns path name>.]<index name>)
+          | SCHEMA_OBJECT(ENTRY_POINT DICTIONARY,[<ns path name>.]<entry point name>)
+
+Purpose: Remove a class <class>.
+
+Scope:   Not allowed in SQL methods
+
+sql> help create index
+
+Syntax:  CREATE [[NOT] UNIQUE] INDEX [IF [NOT] EXISTS [schema_object]] <index> ON <class> (
+           <attribute> [ASC | DESC]
+           [, ...]
+         )
+
+         With schema_object such as:
+
+         schema_object ::=
+          SCHEMA_OBJECT(NAMESPACE,[<ns path name>.]<ns name>)
+          | SCHEMA_OBJECT(CLASS,[<ns path name>.]<class name>)
+          | SCHEMA_OBJECT(ATTRIBUTE,[<ns path name>.]<cls name>.<att name>)
+          | SCHEMA_OBJECT(RELATIONSHIP,[<ns path name>.]<cls name>.<rel name>)
+          | SCHEMA_OBJECT(METHOD,[<ns path name>.]<cls name>.<mth name>)
+          | SCHEMA_OBJECT(INDEX,[<ns path name>.]<index name>)
+          | SCHEMA_OBJECT(ENTRY_POINT DICTIONARY,[<ns path name>.]<entry point name>)
+
+Purpose: Define a new index <index> with up to four attributes as its criteria.
+         The maximum size for a key is 256 characters, thus the sum of all the
+         attribute sizes should not exceed 256.
+
+Scope:   Not allowed in SQL methods
+
+Example: CREATE CLASS movie (title VARCHAR (60), runningTime INTEGER);
+         CREATE INDEX IF NOT EXISTS movieIndex ON movie (
+            title ASC,
+            runningTime ASC
+         );
+
+sql> help drop index
+
+Syntax:  DROP INDEX  [IF [NOT] EXISTS [schema_object] <index>
+
+         With schema_object such as:
+
+         schema_object ::=
+          SCHEMA_OBJECT(NAMESPACE,[<ns path name>.]<ns name>)
+          | SCHEMA_OBJECT(CLASS,[<ns path name>.]<class name>)
+          | SCHEMA_OBJECT(ATTRIBUTE,[<ns path name>.]<cls name>.<att name>)
+          | SCHEMA_OBJECT(RELATIONSHIP,[<ns path name>.]<cls name>.<rel name>)
+          | SCHEMA_OBJECT(METHOD,[<ns path name>.]<cls name>.<mth name>)
+          | SCHEMA_OBJECT(INDEX,[<ns path name>.]<index name>)
+          | SCHEMA_OBJECT(ENTRY_POINT DICTIONARY,[<ns path name>.]<entry point name>)
+
+Purpose: Remove an index <index>.
+
+Scope:   Not allowed in SQL methods
+
+sql> help create entry point
+
+Syntax:  CREATE [[NOT] UNIQUE] ENTRY_POINT DICTIONARY [IF [NOT] EXISTS [schema_object]] <ep_dict>
+           ON <class> ( <attribute> )
+           [[NOT] CASE SENSITIVE]
+           [MAKE_ENTRY <make_entry_function>]
+
+         With schema_object such as:
+
+         schema_object ::=
+          SCHEMA_OBJECT(NAMESPACE,[<ns path name>.]<ns name>)
+          | SCHEMA_OBJECT(CLASS,[<ns path name>.]<class name>)
+          | SCHEMA_OBJECT(ATTRIBUTE,[<ns path name>.]<cls name>.<att name>)
+          | SCHEMA_OBJECT(RELATIONSHIP,[<ns path name>.]<cls name>.<rel name>)
+          | SCHEMA_OBJECT(METHOD,[<ns path name>.]<cls name>.<mth name>)
+          | SCHEMA_OBJECT(INDEX,[<ns path name>.]<index name>)
+          | SCHEMA_OBJECT(ENTRY_POINT DICTIONARY,[<ns path name>.]<entry point name>)
+
+Purpose: Define an new entry point dictionary <ep_dict> on an attribute
+         <attribute> in class <class> with a keyword generator function
+         <make-entry-function>. 
+
+Scope:   Not allowed in SQL methods
+
+Example: CREATE ENTRY_POINT DICTIONARY titleDict ON movie (title)
+           MAKE_ENTRY "make-full-text-entry";
+
+sql> help drop entry point
+
+Syntax:  DROP ENTRY_POINT DICTIONARY [IF [NOT] EXISTS [schema_object]] <ep_dictionary>
+
+         With schema_object such as:
+
+         schema_object ::=
+          SCHEMA_OBJECT(NAMESPACE,[<ns path name>.]<ns name>)
+          | SCHEMA_OBJECT(CLASS,[<ns path name>.]<class name>)
+          | SCHEMA_OBJECT(ATTRIBUTE,[<ns path name>.]<cls name>.<att name>)
+          | SCHEMA_OBJECT(RELATIONSHIP,[<ns path name>.]<cls name>.<rel name>)
+          | SCHEMA_OBJECT(METHOD,[<ns path name>.]<cls name>.<mth name>)
+          | SCHEMA_OBJECT(INDEX,[<ns path name>.]<index name>)
+          | SCHEMA_OBJECT(ENTRY_POINT DICTIONARY,[<ns path name>.]<entry point name>)
+
+Purpose: Remove an entry point dictionary <ep_dictionary>.
+
+Scope:   Not allowed in SQL methods
+
+sql> help selection
+
+Syntax:  SELECTION( {<relationship> | <selection>} [, ...] )
+
+         SELECTION( <selection1> {UNION | INTERSECT | EXCEPT} <selection2> )
+
+         SELECTION( <oid> [, ...] )
+
+         SELECTION()
+
+Purpose: Constructor for a selection, which contains a list of objects. It
+         can be used in UPDATE or INSERT statements or SET assigments. The 
+         constructed selection can be assigned to a relationship.
+
+         SELECTION() is an empty selection.
+
+Example: Append successors to a relationship.
+         
+            SELECT REF(m) FROM movie m WHERE ...
+              INTO moreTitles;
+
+            UPDATE boxOffice
+              SET topTitles = SELECTION(topTitles, moreTitles)
+              WHERE week = DATE '2001-01-22';
+
+         Set relationship successors using OID values:
+
+            UPDATE boxOffice
+              SET topTitles = SELECTION('0x4e6', '0x55c', '0x566')
+              WHERE week = DATE '2001-01-22';
+
+         Construct a selection using selections in a block statement:
+
+            BEGIN
+              DECLARE res SELECTION(movie);
+              DECLARE someTitles SELECTION(movie);
+              DECLARE moreTitles SELECTION(movie);
+
+              SELECT REF(m) FROM movie m WHERE ...
+                INTO someTitles;
+              SELECT REF(m) FROM movie m WHERE ...
+                INTO moreTitles;
+
+              SET res = SELECTION(someTitles UNION moreTitles);
+              RETURN res;
+            END;
+
+         Construct a selection using objects in a block statement:
+
+            BEGIN
+              DECLARE res SELECTION(movie);
+              DECLARE mObj1 movie;
+              DECLARE mObj2 movie;
+
+              SELECT REF(m) INTO mObj1 FROM movie m WHERE ...;
+              SELECT REF(m) INTO mObj2 FROM movie m WHERE ...;
+
+              SET res = SELECTION(mObj1, mObj2);
+              RETURN res;
+            END;
+
+See also: 'block statement', 'drop selection', 'except', 'insert',
+          'intersect', 'into selection', 'union'
+
+sql> help into selection
+
+Syntax:   SELECT REF(<alias>) FROM {<class> | <selection1>} <alias>
+            WHERE ... INTO <selection2>
+
+Purpose: Generates a selection of objects <selection2>.
+         The selection can be used in other SQL statements until it is
+         freed with a DROP SELECTION statement.
+
+Example:  SELECT REF(m) FROM movie m WHERE ...
+              INTO moreTitles;
+
+See also: 'drop selection', 'selection'
+
+sql> help drop selection
+
+Syntax:  DROP SELECTION <selection>
+
+Purpose: Frees a selection <selection>.
+
+Scope:   Not allowed in SQL methods
+
+See also: 'into selection', 'selection'
+
+sql> help union
+
+Syntax:  <selection1> UNION <selection2>
+
+Purpose: Returns an union of two selections <selection1> and <selection2>.
+
+Example: (selection1, selection2, and selection3 are different selections)
+
+         UPDATE boxOffice
+           SET topTitles = 
+                 SELECTION((selection1 UNION selection2) INTERSECT selection3)
+           WHERE week = DATE '2001-01-22';
+
+See also: 'except', 'insert', 'intersect', 'update', 'set assignment'
+
+sql> help intersect
+
+Syntax:  <selection1> INTERSECT <selection2>
+
+Purpose: Returns an intersection of two selections <selection1> and
+         <selection2>.
+
+Example: (selection1, selection2, and selection3 are different selections)
+
+         UPDATE boxOffice
+           SET topTitles = 
+               SELECTION((selection1 UNION selection2) INTERSECT selection3)
+           WHERE week = DATE '2001-01-22';
+
+See also: 'except', 'insert', 'union', 'update', 'set assignment'
+
+sql> help except
+
+Syntax:  <selection1> EXCEPT <selection2>
+
+Purpose: Returns a difference of two selections <selection1> and
+         <selection2>, that is, all objects in <selection1> except those
+         in <selection2>. 
+
+Example: (selection1, selection2, and selection3 are different selections)
+
+         UPDATE boxOffice
+           SET topTitles = 
+                SELECTION((selection1 UNION selection2) EXCEPT selection3)
+           WHERE week = DATE '2001-01-22';
+
+See also: 'insert', 'intersect', 'union', 'update', 'set assignment'
+
+sql> help selection add
+
+Syntax:  <selection>.ADD(<object>)
+
+Purpose: Add an object to the end of the selection.
+
+Example:  BEGIN
+            DECLARE s1 SELECTION(Artist);
+            DECLARE anArtist Artist;
+
+            s1.ADD(anArtist);
+          END;
+
+See also: 'selection'
+
+sql> help selection add_all
+
+Syntax:  <selection>.ADD_ALL(<selection>)
+
+Purpose: Add objects in selection to the end of the selection.
+
+Example:  BEGIN
+            DECLARE s1 SELECTION(Artist);
+            DECLARE artists SELECTION(Artist);
+
+            s1.ADD(artists);
+          END;
+
+See also: 'selection'
+
+sql> help selection clear
+
+Syntax:  <selection>.CLEAR()
+
+Purpose: Remove all of the elements in the selection.
+
+Example:  BEGIN
+            DECLARE s1 SELECTION(Artist);
+
+            s1.CLEAR();
+          END;
+
+See also: 'selection'
+
+sql> help selection contains
+
+Syntax:  <selection>.CONTAINS(<object>)
+
+Purpose: Determines whether object is contained in the selection.
+
+Example:  BEGIN
+            DECLARE s1 SELECTION(Artist);
+            DECLARE anArtist Artist;
+
+            RETURN s1.CONTAINS(anArtist);
+          END;
+
+See also: 'selection'
+
+sql> help selection count
+
+Syntax:  <selection>.COUNT()
+
+Purpose: Return the number of objects in the selection.
+
+Example:  BEGIN
+            DECLARE s1 SELECTION(Artist);
+            DECLARE cnt INTEGER;
+            SET cnt = s1.COUNT();
+          END;
+
+See also: 'selection'
+
+sql> help selection get
+
+Syntax:  <selection>.GET(<index>)
+
+Purpose: Return the object at the specified position in this selection.
+
+Example:  BEGIN
+            DECLARE s1 SELECTION(Artist);
+            DECLARE anArtist Artist;
+
+            SET anArtist = s1.GET(1);
+          END;
+
+See also: 'selection'
+
+sql> help selection insert
+
+Syntax:  <selection>.INSERT(<index>, <object>)
+
+Purpose: Insert object at the specified position index in this selection.
+
+Example:  BEGIN
+            DECLARE s1 SELECTION(Artist);
+            DECLARE anArtist Artist;
+            DECLARE i INTEGER;
+
+            s1.INSERT(i, anArtist);
+          END;
+
+See also: 'selection'
+
+sql> help selection remove
+
+Syntax:  <selection>.REMOVE(<object)
+
+Purpose: Remove the first occurrence of the specified object in this selection.
+	 The method returns true if the specified object is found. Otherwise, 
+         it returns false.
+
+Example:  BEGIN
+            DECLARE s1 SELECTION(Artist);
+            DECLARE anArtist Artist;
+            
+            SET found = s1.REMOVE(anArtist);
+          END;
+
+See also: 'selection'
+
+sql> help selection remove_at
+
+Syntax:  <selection>.REMOVE_AT(<index>)
+
+Purpose: Remove the object at the specified position in this selection. The 
+         method returns false if the specified position is out of range. 
+         Otherwise, it returns true.
+
+Example:  BEGIN
+            DECLARE s1 SELECTION(Artist);
+            DECLARE i INTEGER;
+
+            SET found = s1.REMOVE_AT(i);
+          END;
+
+See also: 'selection'
+
+sql> help selection remove_duplicates
+
+Syntax:  <selection>.REMOVE_DUPLICATES()
+
+Purpose: Remove the duplicate objects in this selection.
+
+Example:  BEGIN
+            DECLARE s1 SELECTION(Artist);
+
+            s1.REMOVE_DUPLICATES();
+          END;
+
+See also: 'selection'
+
+sql> help selection set
+
+Syntax:  <selection>.SET(<index>, <object>)
+
+Purpose: Replace the object at the specified position in this selection with 
+         the specified object.
+
+Example:  BEGIN
+            DECLARE s1 SELECTION(Artist);
+            DECLARE anArtist Artist;
+            DECLARE i INTEGER;
+
+            s1.SET(i, anArtist);
+          END;
+
+See also: 'selection'
+
+sql> help select
+
+Syntax:  SELECT 
+           [PARALLEL(degree_of_parallelism)] 
+           [FILTERED|UNFILTERED] [DISTINCT] <select_list> 
+           [INTO <select_target_list>]
+           <from_clause>
+           [<where_clause>]
+           [<group_by_clause>]
+           [<having_clause>]
+           [<order_by_clause>]
+           [LIMIT max_num]
+           [OFFSET start_offset]
+           [<into_selection_clause>]
+
+         <select_list> ::= * 
+                     | [<relationship>[.<class>]].{<attribute> | *} [, ...]
+                     | [<relationship>[.<class>]].<relationship> [, ...]
+                     | OID
+                     | <set_function>
+                     | <expression>
+
+Purpose: A SELECT statement returns a set of objects that qualifies the query,
+         along with relational database style projection of the result.
+
+         OID specified in <select_list> works as the primary key. 
+         A relationship specified in <select_list> works as a foreign key.
+
+Example: SELECT title, directedBy.movieDirector.lastName
+           FROM movie 
+           WHERE rating = 'PG13'
+           ORDER BY title DESC, runningTime ASC
+           LIMIT 25 OFFSET 100;
+
+See also: 'block statement', 'from', 'expression', 'into selection',
+          'order by', 'where'          
+
+sql> help block
+
+Type 'help block statement' for information about block statements
+
+sql> help block statement
+
+Purpose: Execute several SQL statements in a single call. To save the
+         statements as a stored method, use the CREATE METHOD statement
+         instead.
+
+Examples:
+    1) Count the movies, return -1 if any movie has a short title:
+
+         BEGIN
+           DECLARE icount INTEGER;
+           SET icount = 0;
+           for_loop:
+           FOR obj AS SELECT REF(m) FROM movie m
+                WHERE title IS NOT NULL
+           DO
+             SET icount = icount + 1;
+             IF LENGTH(obj.title) < 10 THEN
+               SET icount = -1;
+               LEAVE for_loop;
+             END IF;
+           END FOR for_loop;
+           RETURN icount;
+         END;
+
+    2) Return a selection:
+
+         BEGIN
+           DECLARE sel SELECTION(movie);
+           SELECT REF(m) FROM movie m INTO sel;
+           RETURN sel;
+         END;
+
+    In the mt_sql utility, the selection returned by a block statement is
+    preserved with the name 'DefaultSelection'. You can access the
+    selection 'sel' returned by the block statement above as following:
+
+         SELECT * FROM DefaultSelection;
+         ...
+         DROP SELECTION DefaultSelection;
+
+    3) Return the result of an aggregate function:
+
+         BEGIN
+           DECLARE v1 NUMERIC(19,2);
+           SELECT MAX(boxOffice) INTO v1 FROM movie;
+           RETURN v1;
+         END;
+
+See also: 'call', 'create method', 'method'
+
+sql> help expression
+
+An expression can be any of the following:
+
+  expression                Example
+  ------------------------  ---------------
+  Attribute Expression      title
+                            directedBy.name
+
+  Constant                  12.34
+                            DATE '2005-10-01'
+
+  Arithmetic Expression     10000 + budget
+                            -budget
+                            budget / 2
+
+  Builtin function          LENGTH(firstName)
+
+  Object identifier         oid
+
+  Object reference          REF(person)
+
+  Method invocation         obj.calcTotal(10.0)
+                            self.totalReceipts(DATE '2001-10-10')
+                            Note: method invocation is not supported in
+                                  SELECT statement.
+
+Example:  SELECT * FROM department
+            WHERE (sales - (budget * 0.7)) / 2 > 10000;
+
+See also: 'simple types', 'list functions', 'string functions'
+
+sql> help operators
+
+Operators for arithmetic operations are as follows:
+
+     Operator          Meaning
+     -------- --------------------------
+       +       Addition
+       -       Minus or Substration
+       *       Multiplication
+       /       Division
+       %       Modulo
+       &       Bitwise AND
+       |       Bitwise OR
+       ^       Bitwise XOR
+       ~       Invert bits
+       <<      Left shift
+       >>      Right shift
+
+See also: 'comparison'
+
+sql> help comparison
+
+Operators for predicate evaluation are as follows:
+
+     Operator          Meaning
+     -------- --------------------------
+       =       Equals
+       <>      Not equal to
+       >       Greater than
+       <       Less than
+       >=      Greater than or equal to
+       <=      Less than or equal to
+
+See also: 'between', 'entry_point', 'in', 'is null', 'like', 'where'
+
+sql> help from
+
+Syntax:  <from_clause> ::= FROM {[ONLY] <class> | <selection>}
+                         | FROM {UPDATED | INSERTED | DELETED} 
+                             ( {[ONLY] <class> | <selection>}, <version>)
+
+Purpose: (1) Regular SELECT statement
+
+         <from_clause> can be either a class or a selection that was
+         created by a previous SQL statement.
+
+         (2) Version Travel
+
+         This statement selects objects that have been updated, inserted,
+         or deleted across two different database versions.
+
+Example: (i) Select the movie objects updated between the versions day1
+             and day2 (day1 < day2):
+
+                 SET TRANSACTION READ ONLY day2;
+                 SELECT * FROM UPDATED (movie, day1);
+
+         (ii) Select the movie objects deleted between the versions day1
+              and day2 (day1 < day2):
+
+                 SET TRANSACTION READ ONLY day2;
+                 SELECT REF(m) FROM DELETED (movie, day1) m INTO dMovies;
+                 COMMIT;
+
+                 SET TRANSACTION READ ONLY day1;
+                 SELECT ... FROM dMovies WHERE ...;
+
+See also:  'into selection', 'order by', 'select', 'where'
+
+sql> help where
+
+Syntax:  <where_clause> ::= WHERE <combination_of_predicates>
+
+         <combination_of_predicates> ::= <predicate> {AND | OR} <predicate>
+
+         <predicate> ::= [NOT]
+                         { <atomic predicate>
+                         | <combination_of_predicates>
+                         }
+
+Purpose: Selects objects that qualify the <where_clause>, that is, objects
+         for which <combination_of_predicates> evaluates to true.
+
+See also: 'delete', 'predicates', 'select', 'update'
+
+sql> help order by
+
+Syntax:  <order_by_clause> ::= ORDER BY {
+                                 <attribute> [ASC | DESC], [, ...]
+                               }
+
+Purpose: Sorts the selected objects according to the values of some
+         attributes.
+
+See also: 'from', 'select', 'where'
+
+sql> help group by
+
+Syntax:  <group_by_clause> ::= GROUP BY [<attribute> [, ...]]
+         <having_clause>   ::= HAVING <search condition>                      
+
+Purpose: Groups the selected objects based on the values of the 
+         attributes specified by the GROUP BY clause, and returns 
+         a single row as summary information for each group.
+
+Example: SELECT category, AVG (runningTime)
+           FROM movie
+           GROUP BY category
+           HAVING AVG (runningTime) > 120;
+
+sql> help oid
+
+Example: SELECT m.name, d.lastName, d.firstName
+           FROM movie m, movieDirector d
+           JOIN movieDirector d ON m.directedBy = d.oid;
+
+Purpose: The predefined oid column acts as a primary key that can be used
+         in join predicates.
+
+See also: 'join', 'selection', 'select'
+
+sql> help ref
+
+Example: SELECT REF(movie) FROM movie;
+
+         SELECT REF(m.directedBy) FROM movie m;
+
+Purpose: REF can be used in projection for directly exporting objects to a
+         language environment.
+
+See also: 'expression'
+
+sql> help distinct
+
+Purpose: Returns only one copy for each set of duplicate rows. 
+         DISTINCT * applies only to the properties defined in the ORDER BY 
+         clause and allows you to select only scalar values excluding list
+         types and multimedia types. To retrieve distinct values in 
+         navigational queries, you need to specify the navigation path for 
+         each DISTINCT property in the ORDER BY clause
+
+Example: SELECT DISTINCT rating FROM movie;
+
+         SELECT DISTINCT * FROM movie ORDER BY category, rating;
+
+	 SELECT DISTINCT
+	   d.DepartmentName,
+	   CONCAT('"',CONCAT(d.employees.Contract, '"')) AS Contract,
+	   CAST((d.employees.Salary / 12) AS INT) AS Monthly
+ 	 FROM
+	   Department d
+	 ORDER BY
+	   d.DepartmentName,
+	   d.employees.Contract,
+	   d.employees.Salary DESC;
+
+See also: 'select'
+
+sql> help filtered
+
+Purpose: The SELECT FILTERED statement applies the relationship navigation 
+         filters in the WHERE clause to the relationship navigation in the 
+         Select-list. The SQL projection produced is equivalent to the SQL 
+         projection of a SQL relational equi-join.
+
+Example: SELECT FILTERED
+ 	   d.DepartmentName,
+ 	   d.employees.EmpId,
+ 	   d.employees.Salary
+ 	 FROM
+ 	   Department d
+ 	 WHERE
+ 	   d.employees.Salary = 180000;
+
+See also: 'select', 'unfiltered'
+
+sql> help parallel
+
+Purpose: The PARALLEL query hint specifies the degree of parallelism requested
+         for the execution of a SQL statement. The actual number of threads 
+         used by a parallel query is determined at query plan execution
+         initialization and is determined by the degree of parallelism and 
+         number of threads available in the SQL parallel processing pool of 
+         threads. The maximum degree of parallelism is set at the server level
+         and defines the upper value which determines the maximum number of 
+         threads that are being used.
+         You need to set the appropriate database configuration parameters 
+         to enable and to control the resources dedicated to parallel 
+         processing of queries.
+
+Example: SELECT PARALLEL(4) FILTERED
+ 	   d.DepartmentName,
+ 	   d.employees.EmpId,
+ 	   d.employees.Salary
+ 	 FROM
+ 	   Department d
+ 	 WHERE
+ 	   d.employees.Salary = 180000;
+
+See also: 'select'
+
+sql> help unfiltered
+
+Purpose: The UNFILTERED keyword forces a direct SELECT statement to build the 
+         full SQL projection on the server-side the same way a block statement
+         or a SQL Method would do it, thus eliminating the need for returning 
+         objects to the client workspace.
+
+Example: SELECT UNFILTERED
+ 	   d.DepartmentName,
+ 	   d.employees.EmpId,
+ 	   d.employees.Salary
+ 	 FROM
+ 	   Department d
+ 	 ORDER BY
+ 	   d.DepartmentName;
+
+See also: 'select', 'filtered'
+
+sql> help join
+
+Example: SELECT m.name, d.lastName, d.firstName
+           FROM movie m
+           JOIN movieDirector d ON m.directedBy = d.oid
+           WHERE m.category = 'Drama';
+
+Description: The join condition is expressed using the relationship
+         'directedBy' defined between the two classes. The relationship
+         'directedBy' works as the foreign key and 'oid' works as the
+         primary key.
+
+
+sql> help insert
+
+Syntax:  INSERT INTO <class>
+           ( <properties_list> )
+           VALUES ( <property_values_list> )
+           [RETURNING [REF(<class>)] INTO <selection_name>]
+ 
+         <properties_list> ::= <attribute_or_relationship> [, ...]
+ 
+         <property_values_list> ::= <expression> [, ...]
+
+Purpose: Creates a new object of a class <class>, and sets its attribute
+         values and relationship successors as specified by
+         <properties_list> and <property_values_list>.
+
+Example: SELECT REF(a) FROM artist a
+           WHERE ...
+           INTO anActress;
+
+         INSERT INTO movie (title, category, starring )
+           VALUES ('Erin Brockovich', 'Drama', anActress)
+           RETURNING REF(movie) INTO aNewMovie;
+
+See also: 'except', 'intersect', 'selection', 'union'
+
+sql> help update
+
+Syntax:  UPDATE <class> SET
+           <attribute> = { <expression> | DEFAULT } [, ...]
+           <relationship> = <expression> [, ...]
+           [<where_clause>]
+
+Purpose: Updates attribute values or relationship successors of the objects
+         that qualify the <where_clause> of SQL statement.
+
+Example: Add successors using the selection constructor SELECTION and
+         set a new value for an attribute.
+
+              SELECT REF(m) FROM movie m
+                WHERE rankForWeek >= 11 AND rankForWeek <= 20
+                INTO next10Titles;
+
+              UPDATE boxOffice 
+                SET topReceipts = 14500000,
+                    topTitles = SELECTION(topTitles, next10Titles)
+                WHERE ...;
+
+See also: 'except', 'intersect', 'selection', 'union', 'where'
+
+sql> help delete
+
+Syntax:  DELETE FROM <class> [ <where_clause> ]
+
+Purpose: Deletes a set of objects which qualifies <where_clause>.
+
+Example: DELETE FROM boxOffice
+           WHERE week < DATE '1985-01-01';
+
+See also: 'where'
+
+sql> help simple types
+
+Matisse simple attribute types and their literal examples.
+
+   SQL-99 Types     Matisse Types   Literal Examples
+----------------- --------------- ----------------------------------------
+TINYINT           BYTE              12
+----------------- --------------- ----------------------------------------
+SMALLINT          SHORT             12
+                                    +12
+----------------- ---------------
+INTEGER           INTEGER          
+----------------- ---------------
+BIGINT            LONG
+----------------- --------------- ----------------------------------------
+NUMERIC[p, [s]]   NUMERIC[p, [s]]   12.3
+DECIMAL[p, [s]]                     p: precision, s: scale
+----------------- --------------- ----------------------------------------
+REAL              FLOAT             12.e0
+----------------- ---------------     .12e-2
+DOUBLE PRECISION  DOUBLE            12.34e+0
+                                     1.2e-4
+                                      .12E+4 
+----------------- --------------- ----------------------------------------
+CHAR              STRING            'Matisse database'
+VARCHAR           VARCHAR           'Matisse''s Cafe' 
+LONG VARCHAR      VARCHAR
+----------------- --------------- ----------------------------------------
+NVARCHAR          NVARCHAR          N 'abcd\u00E9'
+                                    _UTF16 'abcd\u00E9'
+----------------- --------------- ----------------------------------------
+DATE              DATE              DATE '2001-01-01'
+----------------- --------------- ----------------------------------------
+TIMESTAMP         TIMESTAMP         TIMESTAMP '2001-01-01 12:34:56' AT UTC
+                                    TIMESTAMP '2001-01-01 12:34:56.000355'
+----------------- --------------- ----------------------------------------
+INTERVAL DAY      INTERVAL          INTERVAL '-1 00:20:10'
+  TO SECOND                         INTERVAL '0 02:23:14'
+----------------- --------------- ----------------------------------------
+BOOLEAN           BOOLEAN           TRUE
+                                    FALSE
+----------------- --------------- ----------------------------------------
+                  OID               '0x10b1'
+
+See also: 'timestamp', 'large objects', 'lists', 'relationships'
+
+sql> help large objects
+
+   SQL-99 Types       Matisse Types    Literal Examples
+-------------------- --------------- ------------------------------------
+BINARY LARGE OBJECT  BYTES           X '0A2F2EFF'
+VARBINARY            AUDIO
+LONG VARBINARY       IMAGE
+                     VIDEO
+-------------------- --------------- ------------------------------------
+CLOB                 TEXT            'some text'
+-------------------- --------------- ------------------------------------
+
+See also: 'simple types', 'lists', 'relationships'
+
+sql> help list types
+
+Matisse list attribute types and their literal examples.
+
+Matisse Types          Literal Examples
+--------------------- ---------------------------------------------------
+LIST(BOOLEAN)         LIST(BOOLEAN)(TRUE, FALSE, FALSE)
+--------------------- ---------------------------------------------------
+LIST(SHORT)           LIST(SHORT)(12, -12)
+LIST(INTEGER)         
+LIST(LONG)         
+--------------------- ---------------------------------------------------
+LIST(NUMERIC[p, [s]]) LIST(NUMERIC)(12.0, -1.2)
+--------------------- ---------------------------------------------------
+LIST(FLOAT)           LIST(FLOAT)(12.e0 , 1.2e-4)
+LIST(DOUBLE)        
+--------------------- ---------------------------------------------------
+LIST(STRING)          LIST(STRING)('Matisse', 'Pete''s Cafe')
+--------------------- ---------------------------------------------------
+LIST(DATE)            LIST(DATE)(DATE '2001-01-01', DATE '2001-01-02')
+--------------------- ---------------------------------------------------
+LIST(TIMESTAMP)       LIST(TIMESTAMP)(TIMESTAMP '2001-01-01 12:34:56',
+                           TIMESTAMP '2001-01-01 12:34:56.000355')
+--------------------- ---------------------------------------------------
+LIST(INTERVAL)        LIST(INTERVAL)(INTERVAL '-1 00:20:10',
+                           INTERVAL '0 02:23:14')
+--------------------- ---------------------------------------------------
+
+See also: 'simple types', 'large objects', 'relationships'
+
+sql> help relationship
+
+Syntax:  <relationship navigation> ::=
+
+         [{<class> | <alias>}.]
+          <relationship>[.({CLASS | ONLY} <succs_class>)]
+          [.<relationship>[.({CLASS | ONLY} <succs_class>)] ... ]
+
+Purpose: Relationships link objects together. You can navigate through
+         relationships within <select_list> or <where_clause>.
+
+         <relationship navigation> is followed by <attribute>, or '*' if
+         used in <select_list>.
+
+         Currently, the number of relationships to be traversed is 
+         limited to 16 when used in <where_clause>, and 1 in
+         <select_list>
+
+Example:
+         SELECT * FROM movie m WHERE m.directedBy.lastName = 'Spielberg'  
+
+         SELECT * FROM movie
+            WHERE starring.(ONLY artist).lastName = 'Cruise'
+
+See also: 'select', 'where'
+
+sql> help count relationship
+
+Syntax:  COUNT(<relationship>[.<successor_class>])
+
+Purpose: Returns the cardinality of a relationship <relationship>.
+         When <successor_class> is specified, it counts only the
+         instances of the class <successor_class> or its subclasses.
+
+Example: To find movies starring more than 10 actors:
+
+           SELECT * FROM movie
+             WHERE COUNT(starring) > 10
+
+         To find movies where a movie director is also starring:
+
+           SELECT * FROM movie
+             WHERE COUNT(starring.movieDirector) = 1
+
+sql> help current_date
+
+Syntax:  DATE 'yyyy-mm-dd'
+
+         CURRENT_DATE()
+
+Purpose: Specifies a date constant.
+
+         'yyyy-mm-dd' represents the year with 4 digits, and the month
+         and day of the month with 2 digits.
+
+         CURRENT_DATE returns the current date.
+
+Example: DATE `2005-10-01'
+
+sql> help timestamp
+
+Syntax:  TIMESTAMP `yyyy-mm-dd hh:mm:ss[.uuuuuu]'
+           [AT {LOCAL | GMT | UTC}]
+
+         CURRENT_TIMESTAMP()
+
+Purpose: Specifies a timestamp constant.
+
+         By default the TIMESTAMP constant is interpreted by
+         Matisse as the local time for the client machine. You
+         can also express the constant in Universal Coordinated
+         Time, also known as Greenwich Mean Time, by using
+         the keywords UTC or GMT.
+
+         CURRENT_TIMESTAMP returns the current timestamp.
+
+Example: If the clock for a client machine is set to US Pacific
+         Standard Time, which is equivalent to GMT -8, the following
+         constants would actually yield to the same internal value:
+
+           TIMESTAMP `2005-10-01 11:30:00'
+
+           TIMESTAMP `2005-10-01 11:30:00' AT LOCAL
+
+           TIMESTAMP `2005-10-01 19:30:00' AT GMT
+
+           TIMESTAMP `2005-10-01 19:30:00' AT UTC
+
+sql> help current_timestamp
+
+Syntax:  TIMESTAMP `yyyy-mm-dd hh:mm:ss[.uuuuuu]'
+           [AT {LOCAL | GMT | UTC}]
+
+         CURRENT_TIMESTAMP()
+
+Purpose: Specify a timestamp constant.
+
+         By default the TIMESTAMP constant is interpreted by
+         Matisse as the local time for the client machine. You
+         can also express the constant in Universal Coordinated
+         Time, also known as Greenwich Mean Time, by using
+         the keywords UTC or GMT.
+
+         CURRENT_TIMESTAMP returns the current timestamp.
+
+Example: If the clock for a client machine is set to US Pacific
+         Standard Time, which is equivalent to GMT -8, the following
+         constants would actually yield to the same internal value:
+
+           TIMESTAMP `2005-10-01 11:30:00'
+
+           TIMESTAMP `2005-10-01 11:30:00' AT LOCAL
+
+           TIMESTAMP `2005-10-01 19:30:00' AT GMT
+
+           TIMESTAMP `2005-10-01 19:30:00' AT UTC
+
+sql> help between
+
+Syntax:  <expression1> [NOT] BETWEEN <expression2> AND <expression3>
+
+Purpose: Performs an interval test.
+
+Example: SELECT * FROM movie
+           WHERE runningTime BETWEEN 90 AND 120
+
+         The where-clause is equivalent to the following:
+
+           WHERE runningTime >= 90 AND runningTime <= 120
+
+sql> help like
+
+Syntax:  <expression> LIKE <pattern> [ESCAPE <escape-char>]
+
+Purpose: Character string pattern matching.
+
+         <pattern> must be a constant string. 
+
+Example: The following request selects all the movies whose
+         names start with 'A'
+
+            SELECT * FROM movie
+              WHERE title LIKE 'A%'
+
+See also: 'entry_point', 'escape'
+
+sql> help entry_point
+
+Syntax:  ENTRY_POINT (<ep_dict>) = <ep_string>
+
+         ENTRY_POINT (<ep_dict>) <> <ep_string>
+
+         ENTRY_POINT (<ep_dict>) [NOT] LIKE <pattern> 
+           [ESCAPE <escape-char>]
+
+Purpose: Search for objects through an entry point dictionary <ep_dict>
+         with an exact match or with pattern matching.
+
+         Entry_point can be preceeded by <relationship_navigation>.
+
+         <pattern> must be a constant string. 
+
+Example: SELECT * FROM movie
+           WHERE ENTRY_POINT (synopsis_dict) = 'adventure'
+
+         SELECT * FROM movie
+           WHERE directedBy.ENTRY_POINT (lastName_dict) LIKE 'S%'
+
+See also: 'create entry point', 'drop entry point', 'escape', 'like'
+
+sql> help escape
+
+Syntax:  <expression> LIKE <pattern> [ESCAPE <escape-char>]
+
+         ENTRY_POINT (<ep_dict>) [NOT] LIKE <pattern> 
+           [ESCAPE <escape-char>]
+
+Purpose: Escapes a character.
+
+Example: <expression> LIKE `\%ABC%' ESCAPE `\'
+
+         The following character strings meet the above predicate:
+
+           %ABC
+           %ABCDE
+
+See also: 'entry_point', 'like'
+
+sql> help in
+
+Syntax:  [ALL | ANY] <set1> IN <set2>
+
+Purpose: Selects objects based on the evaluation of their inclusion in 
+         two sets of objects.
+
+         For each object belonging to <set1>, the keyword IN checks
+         to see whether or not it also belongs to <set2>. 
+
+Example: To select the movies where all the directors
+         are also starring in the movie:
+
+            SELECT * FROM movie
+              WHERE ALL directedBy IN starring
+
+sql> help is null
+
+Syntax:  <expression> IS [NOT] NULL
+
+Purpose: Checks to see if an expression <expression> leads to a null
+         value.
+
+Example: To select all of the objects of the class 'movie' whose
+         attribute 'runningTime' has a null value:
+
+            SELECT * FROM movie WHERE runningTime IS NULL
+
+sql> help is default
+
+Syntax:  <expression> IS [NOT] DEFAULT
+
+Purpose: Checks to see if an expression <expression> leads to a default
+         value.
+
+Example: To select all of the objects of the class 'movie' whose
+         attribute 'runningTime' has a default value:
+
+            SELECT * FROM movie WHERE runningTime IS DEFAULT
+
+sql> help is of
+
+Syntax:  <expression> IS [NOT] OF ([ONLY] <classname> [, ...])
+
+Purpose: Tests if an object instance is of one of the classes specified
+         by <classname>, or their subclasses unless ONLY is preceding
+         <classname>.
+
+         <expression> can be a class or alias name specified in the 
+         FROM clause or relationship navigation.
+
+Example: To select employees based on different conditions for different
+         type of employees:
+
+            SELECT * FROM Employee e
+             WHERE (e IS OF (ONLY Employee) AND salary > 40000)
+                OR (e IS OF (Manager, Officer) AND salary > 50000)
+
+         To select movies which has any starring movie director:
+
+            SELECT * FROM movie m WHERE m.starring IS OF (movieDirector)
+
+sql> help extract
+
+Syntax:  EXTRACT ( {YEAR | MONTH | DAY | HOUR | MINUTE | SECOND | MICROSECOND }
+                   FROM <t>)
+
+Purpose: Extracts a specified field from a timestamp, date, or interval value.
+         If <t> is date and specified field is not YEAR, MONTH, or DAY,
+         0 is returned.
+
+Example:  EXTRACT (HOUR FROM aTimestamp)
+
+sql> help cast
+
+Type 'help <function name>' for information on the cast functions    
+  value cast               object cast
+
+sql> help value cast
+
+Syntax:  CAST (<expr> AS <typename>)
+
+Purpose: Converts a value of <expr> into the target type <typename>.
+
+Example: A simple example:
+
+           SELECT CAST ('+1 00:12:34' AS INTERVAL) FROM ...
+
+         To normalize the result of arithmetic division operation with
+         a specific precision and scale:
+        
+           SELECT CAST (num1/num2 AS NUMERIC(10,4)) FROM ...
+
+sql> help coalesce
+
+Syntax:  COALESCE(<expr1>, <expr2> [, <expr3> ... , <expr15>])
+
+Purpose: Evaluates the arguments in order and returns the current value of the 
+         first expression that initially does not evaluate to NULL.
+         If all arguments are NULL, COALESCE returns NULL.
+
+Example:  sql> SELECT a.firstName, a.lastName,
+            2>        COALESCE(a.firstName, a.lastName) AS firstNotNull
+            3>   FROM artist AS a;
+
+See also: 'nullif'
+
+sql> help nullif
+
+Syntax:  NULLIF(<expr1>,<expr2>)
+
+Purpose: Returns the first expression if the two expressions are not equal. 
+         If the expressions are equal, NULLIF returns a null value of the type 
+         of the first expression.
+
+Example:  sql> SELECT AVG(NULLIF(runningTime, 0)) FROM movie;
+
+See also: 'coalesce'
+
+sql> help concat
+
+Syntax:  CONCAT(<string1>, <string2>)
+
+Purpose: Concatenates two argument strings and returns the result.
+
+Example:  sql> SELECT a.firstName, a.lastName,
+            2>        CONCAT(a.firstName, a.lastName) AS concatenated
+            3>   FROM artist AS a;
+
+           firstName     lastName      concatenated
+           ------------- ------------- ----------------
+           Leonardo      DiCaprio      LeonardoDiCaprio
+
+See also: 'string functions'
+
+sql> help instr
+
+Syntax:  INSTR(<string1>, <string2> [, <n> [, <m>]])
+
+Purpose: Returns the character position in <string1> after position <n>,
+         where <m>th occurence of <string2> appears.
+
+         The default value for both <n> and <m> is 1.
+
+Example:  sql> SELECT INSTR('MATISSE MATINEE', 'MAT', 1, 2) FROM ...;
+
+           ------------
+                      9
+
+           sql> SELECT INSTR('MATISSE MATINEE', 'MAT', -1) FROM ...;
+
+           ------------
+                      9
+
+See also: 'string functions'
+
+sql> help left
+
+Syntax:  LEFT(<string>,<len>)
+
+Purpose: Returns the leftmost <len> characters from <string>, or NULL
+         if any argument is NULL.
+
+Example:  sql> SELECT m.title, LEFT(m.title,2) AS len FROM movie AS m;
+
+           title          left
+           -------------- --------
+           Rocky                Ro
+
+See also: 'string functions'
+
+sql> help length
+
+Syntax:  LENGTH(<string>)
+
+Purpose: Returns the number of characters in <string>.
+
+Example:  sql> SELECT m.title, LENGTH(m.title) AS len FROM movie AS m;
+
+           title          len
+           -------------- --------
+           Rocky                 5
+
+See also: 'string functions'
+
+sql> help locate
+
+Syntax:  LOCATE(<substr>, <string> [,<n>])
+
+Purpose: Returns the position of the first occurrence of <substr> in 
+         <string>, starting at position <n>. Returns 0  if <substr> is 
+         not in <string>.
+
+Example:  sql> SELECT LOCATE('MAT', 'MATISSE MATINEE') FROM ...;
+           locate
+           ------------
+                      1
+
+See also: 'string functions'
+
+sql> help lower
+
+Syntax:  LOWER(<string>)
+
+Purpose: Returns a string in which all characters are converted to lowercase.
+
+Example:  sql> SELECT m.title, LOWER(m.title) FROM movie AS m;
+
+           title          lower
+           -------------- --------------
+           Rocky          rocky
+
+See also: 'string functions'
+
+sql> help lpad
+
+Syntax:  LPAD(<string>,<len>,<padstr>)
+
+Purpose: Returns the string <string>, left-padded with the string <padstr> 
+         to a length of <len> characters. If <string> is longer than <len>, 
+         the return value is shortened to <len> characters. 
+
+Example:  sql> SELECT m.title, LPAD(m.title,8,'.') FROM movie AS m;
+
+           title          lpad
+           -------------- --------------
+           Rocky          ...Rocky
+
+See also: 'string functions'
+
+sql> help ltrim
+
+Syntax:  LTRIM(<string1> [, <string2>])
+
+Purpose: Removes characters from the left of <string1>, with all the leftmost
+         characters that appear in <string2> removed, and returns the result.
+
+         The default value for <string2> is a single space.
+
+Example:  sql> SELECT LTRIM('baacde', 'ab') AS trimmed FROM ...;
+
+           trimmed
+           -------------
+           cde
+
+See also: 'string functions'
+
+sql> help replace
+
+Syntax:  REPLACE(<string>,<fromstr>,<tostr>)
+
+Purpose: Returns <string> with all occurrences of the <fromstr>  
+         replaced by <tostr>.
+
+Example:  sql> SELECT REPLACE('matisse', 'm', 'M') FROM ...;
+
+           replace
+           -------------
+           Matisse
+
+See also: 'string functions'
+
+sql> help replicate
+
+Syntax:  REPLICATE(<string>,<n>)
+
+Purpose: Returns a string consisting of the string <string> repeated <n> times.
+         If <n> is less than 1, returns an empty string. Returns NULL if 
+         <string> or <n> are NULL.
+
+Example:  sql> SELECT REPLICATE('matisse', 2) FROM ...;
+
+           replicate
+           --------------
+           matissematisse
+
+See also: 'string functions'
+
+sql> help reverse
+
+Syntax:  REVERSE(<string>)
+
+Purpose: Returns <string> with the order of the characters reversed.
+
+Example:  sql> SELECT REVERSE('matisse') FROM ...;
+
+           reverse
+           --------------
+           essitam
+
+See also: 'string functions'
+
+sql> help right
+
+Syntax:  RIGHT(<string>,<len>) 
+
+Purpose: Returns the rightmost <len> characters from <string>, or NULL if any 
+         argument is NULL.
+
+Example:  sql> SELECT m.title, RIGHT(m.title,2) AS len FROM movie AS m;
+
+           title          right
+           -------------- --------
+           Rocky                ky
+
+See also: 'string functions'
+
+sql> help rpad
+
+Syntax:  RPAD(<string>,<len>,<padstr>)
+
+Purpose: Returns the string <string>, right-padded with the string <padstr>  
+         to a length of <len> characters. If <string> is longer than <len>, 
+         the return value is shortened to <len> characters. 
+
+Example:  sql> SELECT m.title, RPAD(m.title,8,'.') AS low FROM movie AS m;
+
+           title          rpad
+           -------------- --------------
+           Rocky          Rocky...
+
+See also: 'string functions'
+
+sql> help rtrim
+
+Syntax:  RTRIM(<string1> [, <string2>])
+
+Purpose: Removes characters from the right of <string1>, with all the 
+         rightmost characters that appear in <string2> removed, and returns 
+         the result.
+
+         The default value for <string2> is a single space.
+
+Example:  sql> SELECT RTRIM('abc d ef', 'def ') AS trimmed FROM ...;
+
+           trimmed
+           -------------
+           abc
+
+See also: 'string functions'
+
+sql> help substr
+
+Syntax:  SUBSTR(<string>, <m> [, <n>])
+
+Purpose: Returns a portion of character string, beginning at position <m>,
+         <n> characters long.
+
+         If n is omitted, returns all characters beginning from the 
+         position specified by <m> to the end of string.
+
+Example:  sql> SELECT SUBSTR('MATISSE SQL', 6) AS extracted FROM ...;
+
+           extracted
+           --------------
+           SE SQL
+
+           sql> SELECT SUBSTR('MATISSE SQL', -6, 2) AS extracted FROM ...;
+
+           extracted
+           --------------
+           SE
+
+See also: 'string functions'
+
+sql> help trim
+
+Syntax:  TRIM(<string1> [, <string2>])
+
+Purpose: Returns <string1> with with <string1> leading an trailing characters 
+         that appear in <string2> removed.
+
+         The default value for <string2> is a single space (' ').
+
+Example:  sql> SELECT TRIM('babacdeabba', 'ab') AS trimmed FROM ...;
+
+           trimmed
+           -------------
+           cde
+
+See also: 'string functions'
+
+sql> help upper
+
+Syntax:  UPPER(<string>)
+
+Purpose: Returns a string in which all characters are converted to uppercase.
+
+Example:  sql> SELECT m.title, UPPER(m.title) AS up FROM movie AS m;
+
+           title          up
+           -------------- --------------
+           Rocky          ROCKY
+
+See also: 'string functions'
+
+sql> help list avg
+
+Syntax:  AVG(<list>)
+
+Purpose: Returns the average value of all the elements in <list>.
+
+Example:  sql> SELECT AVG(LIST(INTEGER)(10, 20, 40)) AS average FROM ...;
+
+           average        
+           ----------
+              23.3333
+
+sql> help element
+
+Syntax:  ELEMENT(<list>, <n>)
+
+Purpose: Returns an element at position <n> in <list>.
+
+Example:  sql> SELECT ELEMENT(LIST(LONG)(10, 20, 30, 40), 2)
+            2>   FROM ... ;
+
+           -------------
+                      20
+
+           sql> SELECT ELEMENT(LIST(LONG)(10, 20, 30, 40), -2)
+             2>   FROM ... ;
+
+           -------------
+                      30
+
+sql> help list max
+
+Syntax:  MAX(<list>)
+
+Purpose: Returns the maximum value of the elements in <list>.
+
+Example:  sql> SELECT MAX(LIST(SHORT)(10, 20, 30, 40))
+            2>   FROM ... ;
+
+           -------------
+                      40
+
+sql> help list min
+
+Syntax:  MIN(<list>)
+
+Purpose: Returns the minimum value of the elements in <list>.
+
+Example:  sql> SELECT MIN(LIST(SHORT)(10, 20, 30, 40))
+            2>   FROM ... ;
+
+           -------------
+                      10
+
+sql> help sublist
+
+Syntax:  SUBLIST(<list>, <n> [, <m>])
+
+Purpose: Returns a portion of <list>, beginning at position <n>, <m>
+         elements long.
+
+         If <m> is omitted, returns all elements beginning from the
+         position specified by <n> to the end of list.
+
+Example:  sql> SELECT SUBLIST(LIST(LONG)(10, 20, 30, 40), 2) AS num
+            2>   FROM ...;
+
+           num 
+           --------- 
+                  20 
+                  30 
+                  40 
+
+          sql> SELECT SUBLIST(LIST(LONG)(10, 20, 30, 40), -3, 2) AS num
+            2>   FROM ...;
+
+           num
+           --------- 
+                  20 
+                  30 
+
+sql> help list sum
+
+Syntax:  SUM(<list>)
+
+Purpose: Returns the sum of the values in <list>.
+
+Example:  sql> SELECT SUM(LIST(LONG)(10, 20, 30, 40)) AS total
+            2>   FROM ... ;
+
+           total
+           -------------
+                     100
+
+sql> help list count
+
+Syntax:  COUNT(<list>)
+
+Purpose: Returns the number of elements in list.
+
+sql> help list
+
+Syntax:  LIST([<constant1> [, <constant2>, ...]])
+
+Purpose: Constructs a new constant list and returns it.
+
+Example: LIST(10, 20, 30)
+
+See also: 'list avg', 'list count', 'list max', 'list min',
+          'list sum', 'list types'
+
+sql> help avg
+
+Syntax:  AVG (<attribute>)
+
+Purpose: Returns the average value for an attribute <attribute> from the
+         set of objects that qualify the query.
+
+Example:  To get the average running time:
+
+             SELECT AVG(runningTime) FROM movie;
+
+See also: 'list avg', 'select'
+
+sql> help count
+
+Syntax:  COUNT ([{<relationship> | <class> | <alias>}.]*)
+
+Purpose: Returns the number of objects that qualify the query.
+
+Example: For instance, the following queries are equivalent for getting
+         the count of all the movies in the database:
+
+              SELECT COUNT(*) FROM movie;
+              SELECT COUNT(movie.*) FROM movie;
+              SELECT COUNT(m.*) FROM movie m;
+
+           To get the count of all the people starring in the movies,
+           use this:
+
+              SELECT COUNT(m.starring.*) FROM movie m;
+
+See also: 'count relationship', 'list count'
+
+sql> help max
+
+Syntax:  MAX (<attribute>)
+
+Purpose: Returns the maximum value for an attribute <attribute> from the
+         set of objects that qualify the query.
+
+See also: 'list max'
+
+sql> help min
+
+Syntax:  MIN (<attribute>)
+
+Purpose: Returns the minimum value for an attribute <attribute> from the
+         set of objects that qualify the query.
+
+See also: 'list min'
+
+sql> help sum
+
+Syntax:  SUM (<attribute>)
+
+Purpose: Returns the sum value for an attribute <attribute> from the set of 
+         objects that qualify the query.
+
+Example:  To get the sum of running time:
+
+             SELECT SUM(runningTime) FROM movie;
+
+See also: 'list sum'
+
+sql> help bit_count
+
+Syntax:  BIT_COUNT (<number>)
+
+Purpose: Return the number of bits that are set in the argument <number>.
+
+See also: 'operators'
+
+sql> help abs
+
+Syntax:  ABS (<number>)
+
+Purpose: Returns the absolute value of <number>.
+
+See also: 'math functions'
+
+sql> help acos
+
+Syntax:  ACOS (<number>)
+
+Purpose: Returns the arc cosine of <number>, that is, the value whose cosine 
+         is <number>. Returns NULL if <number> is not in the range -1 to 1.
+
+See also: 'math functions'
+
+sql> help asin
+
+Syntax:  ASIN (<number>)
+
+Purpose: Returns the arc sine of <number>, that is, the value whose sine 
+         is <number>. Returns NULL if <number> is not in the range -1 to 1.
+
+See also: 'math functions'
+
+sql> help atan
+
+Syntax:  ATAN (<number>)
+
+Purpose: Returns the arc tangent of <number>, that is, the value whose 
+         tangent is <number>.
+
+See also: 'math functions'
+
+sql> help atan2
+
+Syntax:  ATAN2 (<Y number>,<X number>)
+
+Purpose: Returns the arc tangent of the two variables <X number> and 
+         <Y number>. It is similar to calculating the arc tangent of 
+         <Y number> / <X number>, except that the signs of both arguments 
+         are used to determine the quadrant of the result.
+
+See also: 'math functions'
+
+sql> help ceiling
+
+Syntax:  CEILING (<number>)
+
+Purpose: Returns the smallest integer value not less than <number>.
+
+See also: 'floor', 'round', 'truncate', 'math functions'
+
+sql> help cos
+
+Syntax:  COS (<number>)
+
+Purpose: Returns the cosine of <number>, where <number> is given in radians.
+
+See also: 'math functions'
+
+sql> help cot
+
+Syntax:  COT (<number>)
+
+Purpose: Returns the cotangent of <number>.
+
+See also: 'math functions'
+
+sql> help degrees
+
+Syntax:  DEGREES (<number>)
+
+Purpose: Returns the argument <number>, converted from radians to degrees.
+
+See also: 'math functions'
+
+sql> help exp
+
+Syntax:  EXP (<number>)
+
+Purpose: Returns the value of e (the base of natural logarithms) raised to 
+         the power of <number>. The inverse of this function is LN().
+
+See also: 'ln', 'math functions'
+
+sql> help floor
+
+Syntax:  FLOOR (<number>)
+
+Purpose: Returns the largest integer value not greater than <number>.
+
+See also: 'ceiling', 'round', 'truncate', 'math functions'
+
+sql> help ln
+
+Syntax:  LN (<number>)
+
+Purpose: Returns the natural logarithm of <number>; that is, the base-e 
+         logarithm of <number>. If <number> is less than or equal to 0, 
+         then NULL is returned.
+
+See also: 'exp', 'math functions'
+
+sql> help log10
+
+Syntax:  LOG10 (<number>)
+
+Purpose: Returns the base-10 logarithm of <number>.
+
+See also: 'math functions'
+
+sql> help log2
+
+Syntax:  LOG2 (<number>)
+
+Purpose: Returns the base-2 logarithm of <number>.
+
+See also: 'math functions'
+
+sql> help log
+
+Syntax:  LOG (<B number>, <X number>)
+
+Purpose: Returns the logarithm of <X number> to the base <B number>. 
+         If <X number> is less than or equal to 0, or if <B number> is less 
+         than or equal to 1, then NULL is returned.
+
+See also: 'math functions'
+
+sql> help mod
+
+Syntax:  MOD (<N number>, <M number>)
+
+Purpose: Modulo operation. Returns the remainder of <N number> divided by 
+         <M number>.
+
+See also: 'math functions'
+
+sql> help pi
+
+Syntax:  PI ()
+
+Purpose: Returns the value of π (pi).
+
+See also: 'math functions'
+
+sql> help power
+
+Syntax:  POWER (<X number>, <Y number>)
+
+Purpose: Returns the value of <X number> raised to the power of <Y number>. 
+
+See also: 'math functions'
+
+sql> help radians
+
+Syntax:  RADIANS (<number>)
+
+Purpose: Returns the argument <number> converted from degrees to radians. 
+
+See also: 'math functions'
+
+sql> help round
+
+Syntax:  ROUND (<X number>[, <D number>])
+
+Purpose: Rounds the argument <X number> to <D number> decimal places. The 
+         rounding algorithm depends on the data type of <X number>. 
+         <D number> defaults to 0 if not specified. <D number> can be negative
+         to cause <D number> digits left of the decimal point of the value 
+         <X number> to become zero. 
+
+See also: 'truncate', 'ceiling', 'floor', 'math functions'
+
+sql> help sign
+
+Syntax:  SIGN (<number>)
+
+Purpose: Returns the sign of the argument <number> as -1, 0, or 1, depending 
+         on whether <number> is negative, zero, or positive. 
+
+See also: 'math functions'
+
+sql> help sin
+
+Syntax:  SIN (<number>)
+
+Purpose: Returns the sine of <number>, where <number> is given in radians. 
+
+See also: 'math functions'
+
+sql> help sqrt
+
+Syntax:  SQRT (<number>)
+
+Purpose: Returns the square root of a non negative number <number>. 
+
+See also: 'math functions'
+
+sql> help tan
+
+Syntax:  TAN (<number>)
+
+Purpose: Returns the tangent of <number>, where <number> is given in radians.
+
+See also: 'math functions'
+
+sql> help truncate
+
+Syntax:  TRUNCATE (<X number>, <D number>)
+
+Purpose: Returns the number <X number>, truncated to <D number> decimal 
+         places. If <D number> is 0, the result has no decimal point or 
+         fractional part. <D number> can be negative to cause <D number> 
+         digits left of the decimal point of the value <X number> to 
+         become zero. 
+
+See also: 'round', 'ceiling', 'floor', 'math functions'
+
+sql> help isMetaSchema
+
+Syntax:  MtClass.isMetaSchema()
+
+Purpose: This method is defined for the MtClass class. Returns true if the 
+         class is part of the meta schema, for example the MtAttribute class.
+         Otherwise, it returns false.
+
+Example: SELECT MtName FROM MtClass c WHERE c.isMetaSchema() = FALSE;
+
+See also: 'isPredefinedObject'
+
+sql> help isPredefinedObject
+
+Syntax:  MtObject.isPredefinedObject()
+
+Purpose: This method is defined for the MtObject class. Returns true if the 
+         object is one of the objects that are generated when the database 
+         is initialized. Otherwise, it returns false.
+
+Example: SELECT MtName FROM MtAttribute a WHERE a.isPredefinedObject() = FALSE;
+
+See also: 'isMetaSchema'
+
+sql> help set current_namespace
+
+Syntax:  SET CURRENT_NAMESPACE { DEFAULT
+                               | <nsname>[.<subnsname>]
+                               }
+
+Purpose: This option sets the default namespace where to find schema 
+         objects unless their names are fully qualified. DEFAULT refers to
+         the root namespace.   
+
+Example: SET CURRENT_NAMESPACE mainmodule.submodule1;
+         SET CURRENT_NAMESPACE DEFAULT;
+
+See also: 'create namespace'
+
+sql> help set connection_option
+
+Syntax:  SET CONNECTION_OPTION DATA_ACCESS_MODE { DEFAULT
+                                                | DATA_READONLY
+                                                | DATA_MODIFICATION
+                                                | DATA_DEFINITION
+                                                }
+
+	 SET CONNECTION_OPTION LOCKING_POLICY { DEFAULT
+                                              | DEFAULT_ACCESS
+                                              | ACCESS_FOR_UPDATE
+                                              }
+
+	 SET CONNECTION_OPTION LOCK_WAIT_TIME { DEFAULT
+                                              | NO_WAIT
+                                              | WAIT_FOREVER
+                                              | <number>
+                                              }
+
+
+Purpose: Connection options affect the way you can interact with the database.
+         You can specify different values for the following options:
+
+         DATA_ACCESS_MODE:
+	     This option allows you to specify the type of access that you intend 
+         to use when connecting to the database. Possible values are:
+
+         - DATA_READONLY allows read only access to the data objects and to
+           the schema. Any attempt to start a transaction will fail (only
+           MtStartVersionAccess is allowed).
+         - DATA_MODIFICATION (default) allows read/write access to the data 
+           objects and read only access to the schema. This is the default 
+           mode.
+         - DATA_DEFINITION allows read/write access to the data objects and
+           to the schema.
+
+         The first two access modes optimize the access to the schema. The
+         DATA_DEFINITION access mode must be used only when schema or
+         meta-schema updates are necessary.
+
+         This option cannot be changed when the transaction is in progress.
+
+
+         LOCKING_POLICY: 
+         This option allows the server to be configured to handle requests for
+         read locks using write locks instead. The possible values are:
+
+         - DEFAULT_ACCESS (default): Normal behavior, requests for read
+           locks result in read locks.
+         - ACCESS_FOR_UPDATE: Requests for read locks result in write locks.
+
+         This option may be changed at any time.
+
+
+         LOCK_WAIT_TIME:
+	     This option allows you to specify the amount of time the server waits
+         for access conflicts to be resolved; if a timeout occurs (wait-time 
+         expires), the explicit or implicit lock request is rejected. 
+         The possible values are:
+
+         - NO_WAIT: If the lock cannot immediately be granted, the lock
+           request is released and the function returns immediately.
+         - WAIT_FOREVER (default): The server waits until there is a deadlock 
+           or until the lock is granted. This is the default value.
+         - A positive integer of type MtLockWaitTime: This is the time (in
+           milliseconds) that the server waits for the lock to be granted. If 
+           the waittime expires, the lock request is rejected. If a deadlock 
+           occurs, the transaction fails or the lock request is rejected.
+
+         When multiple objects are requested, the wait-time applies to each
+         object request individually. The wait-time affects the process of
+         obtaining locks for reads and writes within transactions. Object 
+         version requests are affected neither by locks nor by wait-times.
+
+Example: SET CONNECTION_OPTION DATA_ACCESS_MODE DATA_DEFINITION
+
+         SET CONNECTION_OPTION LOCKING_POLICY ACCESS_FOR_UPDATE
+
+         SET CONNECTION_OPTION LOCK_WAIT_TIME 500
+
+sql> help set memory_quota
+
+Syntax:  SET MEMORY_QUOTA <number>{M}
+
+Purpose: Change the memory quota of the SQL execution in the server
+         process. The number is in mega-byte. Once the memory quota
+         is changed, it is valid until the end of the server connection.
+         The default quota is 500M.
+
+         To revert to the default setting, use 0
+
+Example: SET MEMORY_QUOTA 1500M
+
+sql> help set optimize
+
+Syntax:  SET OPTIMIZE DEFAULT
+
+         SET OPTIMIZE RELATIONSHIP { DEFAULT
+                                   | DIRECT
+                                   }
+
+         SET OPTIMIZE INDEX { DEFAULT
+                            | IGNORE
+                            }
+
+Purpose: Change the optimization options of the SQL compiler in order to better
+         combine the benefits of relationship navigation and indexes.
+         DEFAULT resets to the default optimization mode.
+         RELATIONSHIP DIRECT forces the optimizer to preserve navigation 
+         through direct relationships
+         INDEX IGNORE makes the optimizer ignore matching indexes
+
+Example: SET OPTIMIZE RELATIONSHIP DIRECT
+
+
+sql> help set explain
+
+Syntax:  SET EXPLAIN { ON
+                     | OFF
+                     }
+
+
+Purpose: Switch the explain mode. The explain mode shows in details the
+         instructions of the query excution plan.
+         Default is off.
+
+Example: SET EXPLAIN ON
+
+sql> help call
+
+Syntax:  CALL <class name>::<method name>(<parameter list>)
+         CALL LOOKUP(<class name>,<oid>).<method name>(<parameter list>)
+
+         <parameter list> ::=
+             <literal constant> [, ...]
+
+Purpose: Execute a SQL method.
+
+Example: To execute the static method 'totalBonus' fpr the 'Employee' class,
+         as a single statement:
+
+          CALL Employee::totalBonus(0.15);
+
+         To execute this method from within a method body:
+
+          SET bonus = Employee::totalBonus(0.15);
+
+         To execute the instance method 'getSalaries' on the 'Employee' 
+         instance '0x1234', as a single statement:
+
+          CALL LOOKUP("Employee",'0x1234').getSalaries(2008);
+
+See also: 'block statement', 'create method', 'method'
+
+sql> help for
+
+Syntax:  [ <for_loop_label>: ]
+         FOR <object_name> AS <select ref() statement> DO
+           <statement>;
+           [ ... ]
+         END FOR [ <for_loop_label> ];
+
+         <select ref() statement> ::=
+            SELECT REF(<class or alias>) FROM ...
+
+Purpose: Execute statements for each object that qualifies the SELECT 
+         statement in <select ref() statement>.
+
+Example: DECLARE titles STRING DEFAULT '';
+         for_loop:
+         FOR obj 
+           AS SELECT REF(m) FROM movie m
+              WHERE title IS NOT NULL
+         DO
+           SET titles = CONCAT (titles, obj.title);
+         END FOR for_loop;
+
+See also: 'iterate', 'loop', 'leave', 'repeat', 'while'
+
+sql> help if
+
+Syntax:  IF <search condition> THEN
+            <statement>;
+            [ ... ]
+         [ { ELSEIF <search condition> THEN
+              <statement>;
+              [ ... ]
+           } [ ... ]
+         ]
+         [ ELSE 
+            <statement>;
+            [ ... ]
+         ]
+         END IF;
+
+Example: DECLARE score INTEGER DEFAULT 0;
+         IF number > 0 THEN
+            SET score = score + 2;
+         ELSE
+            SET score = score - 1;
+         END IF;
+
+sql> help declare
+
+Syntax:  DECLARE <variable name> [, ... ] <type>
+           [ DEFAULT <literal constant> ]
+
+Purpose: Declare a variable that is local to the statement.
+
+Example: DECLARE score INTEGER DEFAULT 10;
+         DECLARE aMovie1, aMovie2 Movie;
+
+sql> help begin
+
+Syntax:  BEGIN <statement> END
+
+Purpose: Used for a block statement or to define method body.
+
+Example: BEGIN
+           RETURN 1.0;
+         END;
+
+sql> help object cast
+
+Syntax:  CAST (<object> AS <class name>)
+
+Purpose: Cast an object from one class to another.
+
+Example: DECLARE mdirector MovieDirector;
+         FOR obj AS SELECT REF(c) FROM Artist c DO
+           IF ... THEN
+             SET mdirector = CAST (obj AS MovieDirector);
+           END IF;
+         END FOR;
+
+sql> help leave
+
+Syntax:  LEAVE <label name>
+
+Purpose: Exit from a block or a FOR loop.
+
+Example: loop_artist:
+         FOR obj AS SELECT REF(c) FROM Artist c DO
+           IF ... THEN
+             LEAVE loop_artist;
+           END IF;
+         END FOR;
+
+See also: 'for', 'iterate', 'loop', 'repeat', 'while'
+
+sql> help return
+
+Syntax:  RETURN [ <expression> ]
+
+Purpose: Return from a method or a block statement. When it is followed
+         by an expression, it returns the value of the expression.
+
+sql> help while
+
+Syntax:  [ <while_loop_label>: ]
+         WHILE <while_condition> DO
+           <statement>;
+           [ ... ]
+         END WHILE [ <while_loop_label> ];
+
+Purpose: Repeat the execution of a statement or a group of statements 
+         while the specified condition is true.
+
+Example: DECLARE tmp INTEGER DEFAULT 0;
+         WHILE tmp < 100 DO
+           ...
+           SET tmp = tmp + 1;
+         END WHILE;
+
+See also: 'for', 'iterate', 'leave', 'loop', 'repeat'
+
+sql> help loop
+
+Syntax:  [ <loop_label>: ]
+         LOOP
+           <statement>;
+           [ ... ]
+         END LOOP [ <loop_label> ];
+
+Purpose: Repeat the execution of a statement or a group of statements.
+         LEAVE, RETURN, or SIGNAL can be used to exit from the loop.
+
+Example: DECLARE tmp INTEGER DEFAULT 0;
+         the_loop:
+         LOOP
+           ...
+           IF tmp = 100 THEN
+             LEAVE the_loop;
+           END IF;
+         END LOOP the_loop;
+
+See also: 'for', 'iterate', 'leave', 'repeat', 'while'
+
+sql> help repeat
+
+Syntax:  [ <repeat_loop_label>: ]
+         REPEAT
+           <statement>;
+           [ ... ]
+         UNTIL <condition>
+         END REPEAT [ <repeat_loop_label> ];
+
+Purpose: Repeat the execution of a statement or a group of statements 
+         until the condition evaluates to true.
+
+Example: DECLARE tmp INTEGER DEFAULT 0;
+         REPEAT
+           ...
+           SET tmp = tmp + 1;
+         UNTIL tmp = 100
+         END REPEAT;
+
+See also: 'for', 'iterate', 'leave', 'loop', 'while'
+
+sql> help iterate
+
+Syntax:  ITERATE <label_name>;
+
+Purpose: Terminate the iteration of a loop and move the control of
+         flow to the beginning of the loop. Can be used with FOR,
+         WHILE, LOOP, and REPEAT statement.
+
+Example: DECLARE tmp INTEGER DEFAULT 0;
+         the_while_loop:
+         WHILE tmp < 100 DO
+           ...
+           IF tmp = 50 THEN
+             ITERATE the_while_loop;
+           END IF;
+           ...
+         END WHILE;
+
+See also: 'for', 'leave', 'loop', 'repeat', 'while'
+
+sql> help set assignment
+
+Syntax:  SET <target variable> = <source expression>
+
+Purpose: Assign the value of <source expression> to the target variable.
+
+Example: DECLARE count INTEGER;
+         DECLARE mObj1 movie;
+         DECLARE res,someTitles,moreTitles SELECTION(movie);
+
+         SET count = 0;
+         SET res = SELECTION(someTitles, moreTitles)
+         SET mObj1 = res.get(1);
+
+sql> help psm_output
+
+Syntax:  PSM_OUTPUT.PRINT(<expression>)
+         PSM_OUTPUT.PRINT_LINE(<expression>)
+         PSM_OUTPUT.PRINT_VARIABLE(<expression>)
+         PSM_OUTPUT.ENABLE()
+         PSM_OUTPUT.DISABLE()
+
+Purpose: These functions enable you to print out variables (name, type and 
+         content) as well as messages from SQL methods into the database 
+         log file. The PRINT function prints out an expression value.
+         The PRINT_LINE function prints out an expression value and then 
+         terminates the line. The PRINT_VARIABLE function prints out detailed 
+         information about a variable (name, type and value) and then 
+         terminate the line.
+         The ENABLE function enables calls to PRINT, PRINT_LINE and 
+         PRINT_VARIABLE. Calls to these functions are ignored if the 
+         PSM_OUTPUT module is not enabled.
+         The DISABLE function disables calls to PRINT, PRINT_LINE and 
+         PRINT_VARIABLE, and purges the message buffer of any remaining 
+         information. 
+
+Example: BEGIN
+           DECLARE Obj Person;
+
+           PSM_OUTPUT.PRINT(Obj.LastName);
+           PSM_OUTPUT.PRINT_LINE('');
+           PSM_OUTPUT.PRINT_LINE(CONCAT('printTrace() - ',Obj.FirstName));
+           PSM_OUTPUT.PRINT_VARIABLE(obj);
+         END;
+
+         BEGIN
+           PSM_OUTPUT.ENABLE();
+         END;
+
+         BEGIN
+           PSM_OUTPUT.DISABLE();
+         END;
+
+sql> help handler
+
+Syntax:  DECLARE {CONTINUE | EXIT} HANDLER FOR <exception conditions>
+           <SQL statement>;
+ 
+Purpose: An exception handler specifies a set of statements to be executed 
+         when an exception occurs in a method or a statement block.
+
+Example: BEGIN
+           DECLARE cnt INTEGER DEFAULT 0;
+           DECLARE CONTINUE HANDLER FOR DIVISION_BY_ZERO
+           SET cnt = -1;
+           FOR obj AS SELECT REF(e) FROM Employee e DO
+             -- division-by-zero exception may happen in the next line
+             IF (obj.salary/obj.workHour) > 200 THEN
+               SET cnt = cnt + 1;
+             END IF;
+           END FOR;
+           RETURN cnt;
+         END;
+ 
+
+sql> help user exception
+
+Syntax:  DECLARE <exception-name> CONDITION [FOR <user-exception-code>]
+
+Purpose: You can define an user exception in a method or a statement block, 
+         which can be used to raise an exception using the SIGNAL statement.
+
+Example: DECLARE out_of_balance CONDITION FOR 1002;
+         DECLARE CONTINUE HANDLER FOR out_of_balance SET balance = -1;
+
+
+sql> help signal
+
+Syntax:  SIGNAL <exception_name> [SET MESSAGE_TEXT = <text message>]
+
+Purpose: The SIGNAL statement clears the diagnostic records and raises an 
+         exception, along with an optional text message.
+
+Example: BEGIN
+           DECLARE out_of_balance CONDITION FOR 2005;
+           DECLARE account STRING;
+
+           IF ... THEN
+             -- raise an exception
+             SIGNAL out_of_balance 
+               SET MESSAGE_TEXT = CONCAT('check balance for ', account); 
+           END IF;
+         END;
+
+
+sql> help resignal
+
+Syntax:  RESIGNAL
+
+Purpose: The RESIGNAL statement resignals the exception along with an optional
+         text message. It does not clear the diagnostic records, but raises 
+         the same exception again. The statement is used only within an 
+         exception handler.
+
+Example: BEGIN
+           DECLARE out_of_balance CONDITION FOR 2005;
+           DECLARE EXIT HANDLER FOR out_of_balance
+             SET check_balance = TRUE;
+
+             BEGIN -- sub-block
+               DECLARE CONTINUE HANDLER FOR out_of_balance
+                 BEGIN
+                   -- do something
+                   SET manager_check = TRUE;
+                   RESIGNAL; -- reraise the same exception
+                 END;
+               ...
+               IF ... THEN
+                 SIGNAL out_of_balance; -- raise an exception
+               END IF;
+             END;
+           END;
+
+
+sql> help help
+
+help           # Print a summary of SQL commands and functions.
+help <cmd>     # Print the detailed Help about <cmd>.
+                 Example: help create class
+
+sql> help quit
+
+quit           # Exit this SQL utility.
+

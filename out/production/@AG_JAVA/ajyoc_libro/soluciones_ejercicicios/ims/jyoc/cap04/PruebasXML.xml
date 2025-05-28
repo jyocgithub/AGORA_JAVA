@@ -1,0 +1,43 @@
+<pedido xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" dia="13" mes="octubre" anio="2017"
+        xsi:noNamespaceSchemaLocation="ped.xsd">
+    <destino>
+        <nombre>Alicia Abad</nombre>
+        <direccion>Plaza de la Duquesa 12</direccion>
+        <tel>932123432</tel>
+        <tel>643232344</tel>
+        <ciudad>Albacete</ciudad>
+        <codPostal>05020</codPostal>
+    </destino>
+    <ordenante cif="3221V">
+        <nombre>Roberto Movilla</nombre>
+        <direccion>General Ricardos 56</direccion>
+        <ciudad>Madrid</ciudad>
+        <codPostal>28055</codPostal>
+    </ordenante>
+    <observaciones>Es urgente, el césped está muy alto</observaciones>
+    <envio tipo="seur"/>
+    <contenido>
+        <producto codigo="HY-872" garantia="3">
+            <nombre>Cortadora de cesped</nombre>
+            <cantidad>1</cantidad>
+            <precio>148.95</precio>
+            <observaciones>Confirmar que es eléctrica</observaciones>
+            <observaciones>Confirmar que es eléctrica</observaciones>
+            <nota>Montar en la entrega al cliente.</nota>
+            <iva tipo="normal"/>
+        </producto>
+        <producto codigo="HA-926">
+            <nombre>Podadora</nombre>
+            <cantidad>3</cantidad>
+            <precio>47.98</precio>
+            <nota>Montar en la entrega.</nota>
+            <iva/>
+        </producto>
+        <producto codigo="LT-311">
+            <nombre>Tijeras</nombre>
+            <cantidad>4</cantidad>
+            <precio>4.18</precio>
+            <iva tipo="reducido"/>
+        </producto>
+    </contenido>
+</pedido>>

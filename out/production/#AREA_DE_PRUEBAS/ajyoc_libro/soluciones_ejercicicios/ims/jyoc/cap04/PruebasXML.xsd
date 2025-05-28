@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           attributeFormDefault="qualified">
+
+
+    <xs:element name="destino" type="tipoDestino"/>
+    <xs:element name="ordenante" type="tipoOrdenante"/>
+
+    <xs:element name="observaciones" type="tipoObs"/>
+
+    <xs:element name="envio" type="tipoEnvio"/>
+
+
+    <xs:complexType name="tipoDestino">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="direccion" type="xs:string"/>
+            <xs:element name="tel" type="tipoTel" minOccurs='1'/>
+            <xs:element name="ciudad" type="xs:string"/>
+            <xs:element name="codPostal" type="tipoCP"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoOrdenante">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="direccion" type="xs:string"/>
+            <xs:element name="ciudad" type="xs:string"/>
+            <xs:element name="codPostal" type="tipoCP"/>
+        </xs:sequence>
+        <xs:attribute name="cif" use="required" type="tipoCif"/>
+    </xs:complexType>
+
+    <xs:complexType name="tipoEnvio">
+        <xs:attribute name="tipo" use="required" type="xs:string"/>
+    </xs:complexType>
+
+
+    <xs:simpleType name="tipoCif">
+        <xs:restriction base="xs:nonNegativeInteger">
+            <xs:pattern value='[0-9]+[A-Za-z]'/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="tipoTel">
+        <xs:restriction base="xs:nonNegativeInteger">
+            <xs:length value='9'/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="tipoCP">
+        <xs:restriction base="xs:string">
+            <xs:length value='5'/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="tipoObs">
+        <xs:restriction base="xs:string">
+            s
+            <xs:whiteSpace value="collapse"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+</xs:schema>
+
+
+        <!--Tener en cuenta los atributos que se encuentran en todas las etiquetas porque serán siempre requeridos.-->
+        <!--El tipo de iva sólo tienes dos valores; normal y reducido.-->
+        <!--El cif de la empresa siempre es el mismo, podría ni ponerse.-->
+        <!--Un pedido siempre tiene productos.-->
+        <!--Las observaciones generales no son siempre obligatorias.-->
+        <!--El año es de tipo entero positivo con 4 digitos.-->
+        <!--La garantia es un número positivo.-->
+        <!--El mes es de enero a diciembre.-->
+        <!--Los días son del 1 al 31.-->
+        <!--El precio es un número con dos decimales.-->
+        <!--El código del producto será siempre dos letras seguido de un guión seguido de tres números.-->
+
+        <!--Última modificación: martes, 23 de enero de 2018, 16:10-->
+

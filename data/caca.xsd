@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sucursales>
+  <sucursal>
+    <poblacion>Madrid</poblacion>
+    <cuenta tipo="AHORRO">
+      <numero>123456</numero>
+      <saldohaber>21000</saldohaber>
+      <saldodebe>200</saldodebe>
+    </cuenta>
+    <cuenta tipo="AHORRO">
+      <numero>1111456</numero>
+      <saldohaber>12000</saldohaber>
+      <saldodebe>0</saldodebe>
+    </cuenta>
+  </sucursal>
+
+  <sucursal>
+    <poblacion pais="españa">Madrid</poblacion>
+    <cuenta tipo="AHORRO">
+      <numero>123456</numero>
+      <saldohaber>21000</saldohaber>
+      <saldodebe>200</saldodebe>
+    </cuenta>
+    <cuenta tipo="AHORRO">
+      <numero>1111456</numero>
+      <saldohaber>12000</saldohaber>
+      <saldodebe>0</saldodebe>
+    </cuenta>
+  </sucursal>
+</sucursales >

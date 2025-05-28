@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="6fed8967-0aa6-446f-9b7f-a5a657d91ffe">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     articulos.`Descripcion` AS articulos_Descripcion,
+     detalle_pedidos.`Precio` AS detalle_pedidos_Precio,
+     detalle_pedidos.`Unidades` AS detalle_pedidos_Unidades,
+     detalle_pedidos.`ID_Pedido` AS detalle_pedidos_ID_Pedido
+FROM
+     `articulos` articulos INNER JOIN `detalle_pedidos` detalle_pedidos ON articulos.`Id_articulo` = detalle_pedidos.`ID_Articulo`]]>
+	</queryString>
+	<field name="articulos_Descripcion" class="java.lang.String"/>
+	<field name="detalle_pedidos_Precio" class="java.math.BigDecimal"/>
+	<field name="detalle_pedidos_Unidades" class="java.lang.Integer"/>
+	<field name="detalle_pedidos_ID_Pedido" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="50">
+			<staticText>
+				<reportElement x="28" y="30" width="100" height="20" uuid="ac9da1cf-1e72-434f-afee-649469fbbfba"/>
+				<text><![CDATA[articulos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="30" width="100" height="20" uuid="daffa706-0cc3-485e-9e14-8f65d1d7b495"/>
+				<text><![CDATA[Unidades]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="30" width="100" height="20" uuid="7cb8ab02-2a74-438a-88cb-192303813c2f"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="49" width="555" height="1" uuid="1e6cb0dc-e824-4830-a34e-13e65899ccaf"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="28" y="36" width="140" height="20" uuid="e0a14ada-dc3a-4deb-aa7e-1c3656525301"/>
+				<textFieldExpression><![CDATA[$F{articulos_Descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="36" width="100" height="20" uuid="84be8d66-9ff8-4261-a5c2-a32b3980a52c"/>
+				<textFieldExpression><![CDATA[$F{detalle_pedidos_Unidades}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="381" y="36" width="100" height="20" uuid="b07fb56b-3d1c-4122-8f82-690c604b69eb"/>
+				<textFieldExpression><![CDATA[$F{detalle_pedidos_Precio}*$F{detalle_pedidos_Unidades}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

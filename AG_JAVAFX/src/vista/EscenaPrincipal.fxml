@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="ap_principal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EscenaPrincipalController">
+   <children>
+      <Button fx:id="bt_volver_login" layoutX="469.0" layoutY="360.0" mnemonicParsing="false" onAction="#on_bt_volver_login" text="Volver a login" />
+      <Label layoutX="241.0" layoutY="14.0" text="Escena Principal" />
+      <TextField fx:id="txt_mensaje_para_2" layoutX="221.0" layoutY="31.0" prefHeight="26.0" prefWidth="187.0" />
+      <Label layoutX="24.0" layoutY="36.0" text="Mensaje para la segunda escena:" />
+      <Button fx:id="bt_goto_2" layoutX="469.0" layoutY="31.0" mnemonicParsing="false" onAction="#on_bt_goto_2" text="Enviar a 2da escena" />
+      <CheckBox fx:id="chk_mayusculas" layoutX="286.0" layoutY="71.0" mnemonicParsing="false" text="Enviar en mayusculas" />
+      <ListView fx:id="listview_principal" layoutX="51.0" layoutY="113.0" onMouseClicked="#on_listview_principal_clicked" prefHeight="200.0" prefWidth="200.0" />
+      <RadioButton fx:id="radio1_principal" layoutX="268.0" layoutY="139.0" mnemonicParsing="false" text="comunitario" />
+      <RadioButton fx:id="radio2_principal" layoutX="268.0" layoutY="164.0" mnemonicParsing="false" text="no comunitario" />
+      <TableView fx:id="tableview_principal" layoutX="387.0" layoutY="113.0" prefHeight="200.0" prefWidth="200.0" />
+      <TextArea fx:id="textarea_principal" layoutX="51.0" layoutY="319.0" prefHeight="74.0" prefWidth="225.0" />
+      <ToggleButton fx:id="toogle1_principal" layoutX="270.0" layoutY="225.0" mnemonicParsing="false" text="comunitario" />
+      <ComboBox fx:id="combo_principal" layoutX="297.0" layoutY="361.0" onAction="#on_combo_principal_clicked" prefWidth="150.0" />
+      <ToggleButton fx:id="toogle2_principal" layoutX="270.0" layoutY="260.0" mnemonicParsing="false" text="no comunitario" />
+      <TextField fx:id="txt_contador" layoutX="411.0" layoutY="31.0" prefHeight="26.0" prefWidth="32.0" />
+   </children>
+</AnchorPane>

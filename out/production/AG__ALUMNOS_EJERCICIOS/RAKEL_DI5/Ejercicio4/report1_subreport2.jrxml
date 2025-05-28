@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1_subreport2" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="41ba1ea4-36cc-4324-bac4-57e90b265b77">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     sum(detalle_pedidos.`Precio`*detalle_pedidos.`Unidades`) AS total,
+     detalle_pedidos.`Precio`,
+     detalle_pedidos.`Unidades`
+FROM
+     `detalle_pedidos` detalle_pedidos]]>
+	</queryString>
+	<field name="total" class="java.math.BigDecimal"/>
+	<field name="Precio" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Unidades" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="50">
+			<textField>
+				<reportElement x="364" y="18" width="100" height="20" uuid="8ae2404c-8834-429f-9c0f-167dd215c88f"/>
+				<textFieldExpression><![CDATA["Total: "+$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="50">
+			<textField>
+				<reportElement x="364" y="15" width="100" height="20" uuid="3ad60252-a5db-4ea2-8f8d-a48a2859b74f"/>
+				<textFieldExpression><![CDATA["Total: "+$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="364" y="20" width="100" height="20" uuid="244931c8-c663-49a5-bb0d-52df9da595c8"/>
+				<textFieldExpression><![CDATA["Total: "+$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>
