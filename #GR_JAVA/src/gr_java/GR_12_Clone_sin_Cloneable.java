@@ -1,16 +1,10 @@
 package gr_java;
 /*
- *      _
- *     | |
- *     | |  _   _     __      ____
- *     | | | | | |  / __ \   /  __\
- *     | | | |_| | | (__) | |  (__
- *     | |  \__, |  \____/   \____/
- *   __/ |   __/ |
- *  |___/   |___/
- *
+ *   ┬ ┬ ┬ ┌─┐ ┌─┐
+ *   │ └┬┘ │ │ │
+ * └─┘  ┴  └─┘ └─┘
+ *     J Y O C
  */
-
 public class GR_12_Clone_sin_Cloneable {
 
     public static void main(String[] args) {
